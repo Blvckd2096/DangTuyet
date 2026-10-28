@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
 <meta name="theme-color" content="#FFECEE">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Đăng &amp; Tuyết — Wedding Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -314,23 +317,24 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
    ============================================================ */
 .calendar{
   max-width:400px;margin:36px auto 0;
-  padding:28px 24px;
-  background:var(--bg-card);
+  padding:28px 20px;
+  background:#ffffff;
+  border:1px solid var(--line);
   border-radius:var(--radius-xl);
-  box-shadow:var(--shadow-soft);
+  box-shadow:0 12px 32px rgba(122,58,85,0.16);
 }
 .cal-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
-.cal-month{font-family:var(--serif);font-size:1.5rem;font-weight:500}
-.cal-year{font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent-deep);font-weight:600}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.cal-dow{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-deep);text-align:center;padding:8px 0;font-weight:600}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;color:var(--ink-soft);position:relative}
+.cal-month{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--ink)}
+.cal-year{font-size:14px;letter-spacing:0.24em;text-transform:uppercase;color:#a85e7b;font-weight:700}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9c5a6e;text-align:center;padding:10px 0;font-weight:700}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--ink);position:relative}
 .cal-day.empty{color:transparent}
 .cal-day.special{color:#fff;font-weight:600}
-.cal-day.special::before{content:'';position:absolute;inset:2px;background:var(--accent-deep);border-radius:50%;z-index:-1;animation:calPop 1000ms var(--ease-out) 400ms both}
+.cal-day.special::before{content:'';position:absolute;inset:2px;background:var(--accent-deep);border-radius:50%;z-index:0;box-shadow:0 4px 14px rgba(212,122,136,0.45);animation:calPop 1000ms var(--ease-out) 400ms both}
 @keyframes calPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:1}}
 .cal-day.special span{position:relative;z-index:1}
-.cal-caption{text-align:center;font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin-top:20px;font-size:0.95rem}
+.cal-caption{text-align:center;font-family:var(--serif);font-style:italic;color:var(--ink);margin-top:20px;font-size:1.05rem;font-weight:500}
 
 /* ============================================================
    STORY
@@ -729,12 +733,14 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
           <p class="family-name" data-bind="groomFather">Ông: —</p>
           <p class="family-name" data-bind="groomMother">Bà: —</p>
           <p class="family-addr" data-bind="groomAddress">Địa chỉ tư gia</p>
+          <div style="margin-top:10px"><a class="btn btn-primary btn-sm" data-bind-map="groomMapUrl" href="#" target="_blank" rel="noopener"><span class="btn-label">Xem bản đồ nhà trai</span></a></div>
         </div>
         <div class="family">
           <h4>Nhà gái</h4>
           <p class="family-name" data-bind="brideFather">Ông: —</p>
           <p class="family-name" data-bind="brideMother">Bà: —</p>
           <p class="family-addr" data-bind="brideAddress">Địa chỉ tư gia</p>
+          <div style="margin-top:10px"><a class="btn btn-primary btn-sm" data-bind-map="brideMapUrl" href="#" target="_blank" rel="noopener"><span class="btn-label">Xem bản đồ nhà gái</span></a></div>
         </div>
       </div>
       <div style="margin:26px auto;color:var(--accent-deep);text-align:center;font-size:1.2rem">✦</div>
@@ -918,8 +924,10 @@ const weddingData = {
 
   groomFather: "Ông: Trần Văn An", groomMother: "Bà: Lê Thị Bình",
   groomAddress: "12 Nguyễn Trãi, Q.1, TP.HCM",
+  groomMapUrl: "https://www.google.com/maps/search/?api=1&query=12+Nguyen+Trai+Q1+Ho+Chi+Minh",
   brideFather: "Ông: Nguyễn Văn Cường", brideMother: "Bà: Phạm Thị Dung",
   brideAddress: "45 Lê Lợi, Q.3, TP.HCM",
+  brideMapUrl: "https://www.google.com/maps/search/?api=1&query=45+Le+Loi+Q3+Ho+Chi+Minh",
 
   venueName: "Trung tâm Hội nghị White Palace",
   venueMapUrl: "https://www.google.com/maps/search/?api=1&query=White+Palace+Ho+Chi+Minh",
@@ -1452,6 +1460,7 @@ function initOpener() {
       });
     }
     startCountdown();
+    setTimeout(() => startWishPolling(), 3000);
     setTimeout(() => {
       $$('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .split-words, .img-reveal').forEach(el => {
         const r = el.getBoundingClientRect();
@@ -1500,7 +1509,6 @@ function init() {
   renderGallery();
   setupRsvp();
   setupWishes();
-  startWishPolling();
   startPetalFall();
   setupGift();
   observeAll();

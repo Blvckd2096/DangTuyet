@@ -318,6 +318,7 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
 .timeline-title{font-family:var(--serif);font-weight:500;font-size:1.4rem;line-height:1.25;margin-bottom:8px}
 .timeline-place{font-size:14px;color:var(--ink-soft);margin-bottom:10px;line-height:1.55;white-space:pre-line}
 .timeline-desc{font-size:18px;color:var(--ink-soft);line-height:1.65;margin-bottom:14px;white-space:pre-line}
+.timeline-old{font-size:13px;color:var(--ink-soft);line-height:1.65;margin-bottom:6px}
 .timeline-actions{display:flex;gap:8px;flex-wrap:wrap}
 
 /* ============================================================
@@ -900,7 +901,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 28/10 16:00</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 28/10 16:09</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -1177,7 +1178,7 @@ function renderSchedule() {
       <p class="timeline-time">${escapeHtml(ev.time)}</p>
       <h3 class="timeline-title">${escapeHtml(ev.title)}</h3>
       <p class="timeline-place">${escapeHtml(ev.place)}</p>
-      ${ev.desc ? `<p class="timeline-desc">${escapeHtml(ev.desc)}</p>` : ''}
+      ${ev.desc ? (ev.desc.includes('\n') ? `<p class="timeline-old">${escapeHtml(ev.desc.split('\n')[0])}</p><p class="timeline-desc">${escapeHtml(ev.desc.split('\n').slice(1).join('\n'))}</p>` : `<p class="timeline-desc">${escapeHtml(ev.desc)}</p>`) : ''}
       ${ev.mapUrl ? `<div class="timeline-actions"><a class="btn btn-ghost btn-sm" href="${escapeHtml(ev.mapUrl)}" target="_blank" rel="noopener"><span class="btn-label">Xem bản đồ</span></a></div>` : ''}
     </div>
   `).join('');

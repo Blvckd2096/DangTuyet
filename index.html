@@ -204,8 +204,10 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
 @keyframes heroIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes heroFadeIn{from{opacity:0}to{opacity:1}}
 
-.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-size:10px;letter-spacing:0.34em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
-.scroll-cue .dot{width:1px;height:32px;background:currentColor;animation:cueDrop 2200ms var(--ease-in-out) infinite;transform-origin:top}
+.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
+.scroll-cue .cue-arrow{display:block;line-height:1;animation:cueBounce 2200ms var(--ease-in-out) infinite}
+.scroll-cue .cue-arrow svg{display:block;width:24px;height:24px}
+@keyframes cueBounce{0%,100%{transform:translateY(0);opacity:0.9}50%{transform:translateY(8px);opacity:0.6}}
 @keyframes cueDrop{0%{transform:scaleY(0);opacity:1}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
 /* ============================================================
@@ -575,6 +577,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 .btn-ghost:hover{border-color:var(--accent-deep);color:var(--accent-deep)}
 .btn-sm{min-height:44px;padding:10px 22px;font-size:13px}
 .btn .btn-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
+.hero-cta .btn{font-family:var(--script);font-size:26px;font-weight:600;letter-spacing:0.02em;line-height:1.2;padding:12px 32px}
 
 /* ============================================================
    REDUCED MOTION
@@ -597,15 +600,17 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
    ============================================================ */
 #bubbleLayer{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}
 .bubble{position:absolute;top:-190px;left:20%;width:var(--bs,150px);height:calc(var(--bs,150px) * 0.9);
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:26px 26px 24px 26px;opacity:0;
+  animation:bubbleFall var(--bd,16s) linear forwards;will-change:transform,opacity}
+.bubble::before{content:'';position:absolute;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='32%25' cy='28%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.95'/%3E%3Cstop offset='38%25' stop-color='%23ffe9ee' stop-opacity='0.88'/%3E%3Cstop offset='72%25' stop-color='%23ffd5dc' stop-opacity='0.72'/%3E%3Cstop offset='100%25' stop-color='%23e89ba8' stop-opacity='0.55'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M50 25 C46 11 30 7 16 17 C4 27 4 45 12 59 C20 73 34 85 50 89 C66 85 80 73 88 59 C96 45 96 27 84 17 C70 7 54 11 50 25 Z' fill='url(%23bg)' stroke='%23ffffff' stroke-width='1.5' stroke-opacity='0.85'/%3E%3C/svg%3E");
   background-size:contain;background-repeat:no-repeat;background-position:center;
   filter:drop-shadow(0 10px 20px rgba(212,122,136,0.35));
-  display:flex;align-items:center;justify-content:center;text-align:center;padding:26px 26px 24px 26px;opacity:0;
-  animation:bubbleFall var(--bd,16s) linear forwards;will-change:transform,opacity}
-.bubble-inner{animation:bubbleSway 3s ease-in-out infinite alternate;max-width:76%}
+  opacity:0.42;z-index:0}
+.bubble-inner{position:relative;z-index:1;animation:bubbleSway 3s ease-in-out infinite alternate;max-width:76%}
 .bubble-name{font-size:13px;font-weight:600;color:#7d3a55;line-height:1.3;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bubble-text{font-size:12px;line-height:1.45;color:#4a2f35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-@keyframes bubbleFall{0%{transform:translateY(-20vh);opacity:0}8%{opacity:0.42}90%{opacity:0.42}100%{transform:translateY(125vh);opacity:0}}
+@keyframes bubbleFall{0%{transform:translateY(-20vh);opacity:0}8%{opacity:1}90%{opacity:1}100%{transform:translateY(125vh);opacity:0}}
 @keyframes bubbleSway{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
 @media (prefers-reduced-motion:reduce){
   #bubbleLayer{display:none}
@@ -662,7 +667,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
     <p class="hero-date" data-bind="weddingDateLong">— Chưa thiết lập ngày cưới —</p>
     <div class="hero-cta"><a href="#invitation" class="btn btn-outline" style="border-color:rgba(255,220,225,0.75);color:#fff"><span class="btn-label">Xem thiệp mời</span></a></div>
   </div>
-  <div class="scroll-cue" aria-hidden="true">Cuộn<span class="dot"></span></div>
+  <div class="scroll-cue" aria-hidden="true"><span class="cue-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
 </header>
 
 <!-- MARQUEE -->

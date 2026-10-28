@@ -599,6 +599,23 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 @media (prefers-reduced-motion:reduce){
   #bubbleLayer{display:none}
 }
+
+/* ============================================================
+   CÁNH HOA ANH ĐÀO RƠI — lớp trang trí toàn màn hình
+   pointer-events: none nên không chặn bấm; z-index 40: trên nội dung
+   (z-index 2) nhưng dưới bong bóng lời chúc (50), nút nhạc (60),
+   lightbox (200) và màn mở thiệp (1000). Chỉ dùng transform/opacity.
+   ============================================================ */
+#petalLayer{position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden}
+.petal{position:absolute;top:-40px;animation:petalFall linear forwards;will-change:transform,opacity;opacity:0}
+.petal-inner{width:100%;height:100%;border-radius:78% 6% 78% 6%;
+  background:linear-gradient(135deg,#fff0f3 0%,#ffd5dc 45%,#f7a8b8 100%);
+  box-shadow:0 2px 8px rgba(212,122,136,0.25);animation:petalSway ease-in-out infinite alternate}
+@keyframes petalFall{0%{transform:translateY(-6vh);opacity:0}10%{opacity:0.85}90%{opacity:0.75}100%{transform:translateY(112vh);opacity:0}}
+@keyframes petalSway{from{transform:translateX(-18px) rotate(-24deg)}to{transform:translateX(18px) rotate(28deg)}}
+@media (prefers-reduced-motion:reduce){
+  #petalLayer{display:none}
+}
 </style>
 </head>
 <body class="locked">
@@ -858,6 +875,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
+<div id="petalLayer" aria-hidden="true"></div>
 
 <!-- MUSIC BUTTON -->
 <button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc nền">
@@ -1267,6 +1285,38 @@ async function loadOnlineWishes() {
     return bubbleState.onlineWishes;
   } catch { return []; }
 }
+
+/* ============================================================
+   CÁNH HOA ANH ĐÀO RƠI
+   - Tối đa 14 cánh cùng lúc, mỗi cánh rơi 11-19 giây, tự xóa khi xong.
+   - Không thả khi: giảm chuyển động, tab đang ẩn.
+   ============================================================ */
+let petalTimer = null;
+function spawnPetal() {
+  if (isReducedMotion() || document.hidden) return;
+  const layer = $('#petalLayer'); if (!layer) return;
+  if (layer.childElementCount >= 14) return;
+  const size = 12 + Math.floor(Math.random() * 11);
+  const el = document.createElement('div'); el.className = 'petal';
+  el.style.left = (Math.random() * 100) + 'vw';
+  el.style.width = size + 'px'; el.style.height = (size * 0.72) + 'px';
+  el.style.animationDuration = (11 + Math.random() * 8).toFixed(1) + 's';
+  const inner = document.createElement('div'); inner.className = 'petal-inner';
+  inner.style.animationDuration = (2.2 + Math.random() * 1.4).toFixed(1) + 's';
+  el.appendChild(inner);
+  el.addEventListener('animationend', () => el.remove());
+  layer.appendChild(el);
+}
+function startPetalFall() {
+  if (petalTimer || isReducedMotion()) return;
+  for (let i = 0; i < 5; i++) setTimeout(spawnPetal, i * 900);
+  petalTimer = setInterval(spawnPetal, 1800);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(petalTimer); petalTimer = null; }
+    else startPetalFall();
+  });
+}
+
 function startWishPolling() {
   if (bubbleState.polling) return;
   const tick = async () => {
@@ -1450,6 +1500,7 @@ function init() {
   setupRsvp();
   setupWishes();
   startWishPolling();
+  startPetalFall();
   setupGift();
   observeAll();
   initOpener();

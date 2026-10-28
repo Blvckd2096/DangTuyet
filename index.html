@@ -331,7 +331,7 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
 .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--ink);position:relative}
 .cal-day.empty{color:transparent}
 .cal-day.special{color:#fff;font-weight:600}
-.cal-day.special::before{content:'';position:absolute;inset:2px;background:var(--accent-deep);border-radius:50%;z-index:0;box-shadow:0 4px 14px rgba(212,122,136,0.45);animation:calPop 1000ms var(--ease-out) 400ms both}
+.cal-day.special::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 88C22 64 6 46 6 28 6 13 18 6 30 12 38 16 46 24 50 32 54 24 62 16 70 12 82 6 94 13 94 28 94 46 78 64 50 88Z' fill='%23d47a88'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat;background-position:center;z-index:0;filter:drop-shadow(0 4px 10px rgba(212,122,136,0.45));animation:calPop 1000ms var(--ease-out) 400ms both}
 @keyframes calPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:1}}
 .cal-day.special span{position:relative;z-index:1}
 .cal-caption{text-align:center;font-family:var(--serif);font-style:italic;color:var(--ink);margin-top:20px;font-size:1.05rem;font-weight:500}
@@ -484,6 +484,11 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
 }
 .gift-qr:hover{transform:scale(1.04)}
 .gift-qr img{width:180px;height:180px;object-fit:contain;border-radius:8px}
+.gift-qr-pair{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.gift-qr-item{text-align:center}
+.gift-qr-item .gift-qr{margin-bottom:0}
+.gift-qr-pair .gift-qr img{width:150px;height:150px}
+.gift-qr-label{font-size:13px;font-weight:600;color:var(--accent-deep);margin-top:10px;letter-spacing:0.08em;text-transform:uppercase}
 
 /* ============================================================
    WISHES
@@ -599,7 +604,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 .bubble-inner{animation:bubbleSway 3s ease-in-out infinite alternate;max-width:100%}
 .bubble-name{font-size:13px;font-weight:600;color:#7d3a55;line-height:1.3;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bubble-text{font-size:12px;line-height:1.45;color:#4a2f35;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-@keyframes bubbleFall{0%{transform:translateY(-20vh);opacity:0}8%{opacity:1}90%{opacity:1}100%{transform:translateY(125vh);opacity:0}}
+@keyframes bubbleFall{0%{transform:translateY(-20vh);opacity:0}8%{opacity:0.7}90%{opacity:0.7}100%{transform:translateY(125vh);opacity:0}}
 @keyframes bubbleSway{from{transform:translateX(-14px)}to{transform:translateX(14px)}}
 @media (prefers-reduced-motion:reduce){
   #bubbleLayer{display:none}
@@ -859,7 +864,10 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
       <p class="gift-bank" data-bind="giftBank">Ngân hàng —</p>
       <p class="gift-account" data-bind="giftAccount">Số tài khoản: —</p>
       <p class="gift-owner" data-bind="giftOwner">Chủ tài khoản</p>
-      <div class="gift-qr" id="giftQr" title="Chạm để phóng to"><img data-bind="giftQrImage" alt="Mã QR chuyển khoản" loading="lazy" referrerpolicy="no-referrer"></div>
+      <div class="gift-qr-pair">
+        <div class="gift-qr-item"><div class="gift-qr" id="giftQr" title="Chạm để phóng to"><img data-bind="giftQrImage" alt="Mã QR chú rể" loading="lazy" referrerpolicy="no-referrer"></div><p class="gift-qr-label">Chú rể</p></div>
+        <div class="gift-qr-item"><div class="gift-qr" id="giftQrBride" title="Chạm để phóng to"><img data-bind="giftQrImageBride" alt="Mã QR cô dâu" loading="lazy" referrerpolicy="no-referrer"></div><p class="gift-qr-label">Cô dâu</p></div>
+      </div>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-outline btn-sm" id="copyAccBtn"><span class="btn-label">Sao chép số TK</span></button></div>
     </div>
   </div>
@@ -923,18 +931,18 @@ const weddingData = {
   loveMessage: "\"Cảm ơn vì đã đến bên đời, và ở lại.\"",
 
   groomFather: "Ông: Trần Văn An", groomMother: "Bà: Lê Thị Bình",
-  groomAddress: "12 Nguyễn Trãi, Q.1, TP.HCM",
-  groomMapUrl: "https://www.google.com/maps/search/?api=1&query=12+Nguyen+Trai+Q1+Ho+Chi+Minh",
+  groomAddress: "SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ",
+  groomMapUrl: "https://www.google.com/maps/search/?api=1&query=SN+146+Thon+Dinh+Tam+Hong+Yen+Lac+Phu+Tho",
   brideFather: "Ông: Nguyễn Văn Cường", brideMother: "Bà: Phạm Thị Dung",
-  brideAddress: "45 Lê Lợi, Q.3, TP.HCM",
-  brideMapUrl: "https://www.google.com/maps/search/?api=1&query=45+Le+Loi+Q3+Ho+Chi+Minh",
+  brideAddress: "Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ",
+  brideMapUrl: "https://www.google.com/maps/search/?api=1&query=Thon+Chua+Tam+Hong+Yen+Lac+Phu+Tho",
 
   venueName: "Trung tâm Hội nghị White Palace",
   venueMapUrl: "https://www.google.com/maps/search/?api=1&query=White+Palace+Ho+Chi+Minh",
 
   schedule: [
-    { time: "15:00 — 16:30", title: "Lễ tại nhà gái", place: "Tư gia nhà gái — 45 Lê Lợi, Q.3", desc: "Lễ vu quy đơn giản cùng gia đình.", mapUrl: "https://www.google.com/maps/search/?api=1&query=45+Le+Loi+Q3+Ho+Chi+Minh" },
-    { time: "17:00 — 17:30", title: "Lễ thành hôn", place: "White Palace — 194 Hoàng Văn Thụ, Q.Phú Nhuận", desc: "Nghi thức chính thức trước sự chứng kiến của gia đình và bạn bè.", mapUrl: "https://www.google.com/maps/search/?api=1&query=White+Palace+Ho+Chi+Minh" },
+    { time: "15:00 — 16:30", title: "Lễ tại nhà gái", place: "Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Địa chỉ chưa sáp nhập: Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc. Lễ vu quy đơn giản cùng gia đình.", mapUrl: "https://www.google.com/maps/search/?api=1&query=Thon+Chua+Tam+Hong+Yen+Lac+Phu+Tho" },
+    { time: "17:00 — 17:30", title: "Lễ thành hôn", place: "SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Địa chỉ chưa sáp nhập: SN 146 - Thôn Đình - Yên Đồng - Yên Lạc - Vĩnh Phúc. Nghi thức chính thức trước sự chứng kiến của gia đình và bạn bè.", mapUrl: "https://www.google.com/maps/search/?api=1&query=SN+146+Thon+Dinh+Tam+Hong+Yen+Lac+Phu+Tho" },
     { time: "18:00 — 21:30", title: "Tiệc cưới", place: "Sảnh chính White Palace", desc: "Tiệc thân mật, chúc mừng và lưu lại những khoảnh khắc.", mapUrl: "https://www.google.com/maps/search/?api=1&query=White+Palace+Ho+Chi+Minh" }
   ],
 
@@ -958,6 +966,7 @@ const weddingData = {
   giftAccount: "0123456789",
   giftOwner: "TRAN HOANG DANG",
   giftQrImage: "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=STK%200123456789%20Vietcombank",
+  giftQrImageBride: "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=STK%200123456789%20Vietcombank",
 
   thankYouMessage: "Cảm ơn bạn đã dành thời gian ghé qua và gửi những lời chúc tốt đẹp nhất. Hẹn gặp bạn trong ngày vui.",
   thankYouImage: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&h=1600&q=80&fit=crop",
@@ -1254,20 +1263,22 @@ lightbox.addEventListener('touchend', e => { const dx = e.changedTouches[0].clie
 function showStatus(el, type, msg) { if (!el) return; el.className = 'form-status show ' + type; el.textContent = msg; }
 /* ============================================================
    BONG BÓNG LỜI CHÚC + ĐỌC LỜI CHÚC ONLINE
-   - Bong bóng chỉ là lớp hiển thị; danh sách đầy đủ phía dưới vẫn giữ nguyên.
+   - Bong bóng chỉ là lớp hiển thị; độ mờ đỉnh 0.7, mờ hơn bản cũ 30%. danh sách đầy đủ phía dưới vẫn giữ nguyên.
    - Tối đa 8 bong bóng cùng lúc, tự xóa khi rơi xong (animationend).
    - Không thả bong bóng khi: giảm chuyển động, tab đang ẩn.
-   - Khử trùng theo tên + nội dung, nên cùng 1 lời chúc không thả lại (đánh đổi: 2 lời chúc giống hệt nhau của cùng 1 tên sẽ gộp thành 1).
+   - Mỗi lần vào lại đều load đủ tất cả lời chúc, không chỉ 8 lời mới nhất: các lời chúc xếp hàng chờ, thả lần lượt, lời nào chưa thả được vì đang đủ 8 bong bóng thì chờ lượt sau chứ không bỏ qua.
+   - Hết 1 lượt, nghỉ 6 giây rồi thả lại từ đầu, cứ thế lặp lại trong khi trang còn mở, nên bong bóng không chạy 1 lần rồi thôi.
+   - Khử trùng theo tên + nội dung trong cùng 1 lượt, nên cùng 1 lời chúc không thả trùng trong 1 lượt (đánh đổi: 2 lời chúc giống hệt nhau của cùng 1 tên sẽ gộp thành 1 trong 1 lượt).
    ============================================================ */
-const bubbleState = { shown: new Set(), onlineWishes: [], polling: null };
+const bubbleState = { shown: new Set(), onlineWishes: [], polling: null, queue: [], spawnTimer: null, cycleTimer: null };
 function wishKey(w) { return [w.name || '', w.message || ''].join('|'); } // Khử trùng theo tên + nội dung (không dùng ts, vì ts lúc gửi và ts server ghi vào Sheet lệch nhau vài giây, dùng ts sẽ làm lời chúc vừa gửi bị thả bong bóng 2 lần).
 function isReducedMotion() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
 function getLocalWishes() { try { return JSON.parse(localStorage.getItem(getWishKey()) || '[]'); } catch { return []; } }
 function spawnBubble(w) {
-  if (isReducedMotion() || document.hidden) return;
-  const layer = $('#bubbleLayer'); if (!layer) return;
-  if (layer.childElementCount >= 8) return;
-  const key = wishKey(w); if (bubbleState.shown.has(key)) return;
+  if (isReducedMotion() || document.hidden) return false;
+  const layer = $('#bubbleLayer'); if (!layer) return false;
+  if (layer.childElementCount >= 8) return false;
+  const key = wishKey(w); if (bubbleState.shown.has(key)) return false;
   bubbleState.shown.add(key);
   const el = document.createElement('div'); el.className = 'bubble';
   const size = 112 + Math.floor(Math.random() * 48);
@@ -1278,9 +1289,39 @@ function spawnBubble(w) {
   el.innerHTML = '<div class="bubble-inner"><p class="bubble-name">' + escapeHtml(String(w.name || '').slice(0, 24)) + '</p><p class="bubble-text">' + escapeHtml(text) + '</p></div>';
   el.addEventListener('animationend', () => el.remove());
   layer.appendChild(el);
+  return true;
 }
-function spawnBubblesStaggered(list) {
-  list.slice(-8).forEach((w, i) => setTimeout(() => spawnBubble(w), i * 1500));
+function queueBubbles(list) {
+  let added = false;
+  (list || []).forEach(w => {
+    const k = wishKey(w);
+    if (!bubbleState.shown.has(k) && !bubbleState.queue.some(q => wishKey(q) === k)) { bubbleState.queue.push(w); added = true; }
+  });
+  if (added) pumpBubbleQueue();
+}
+function pumpBubbleQueue() {
+  if (bubbleState.spawnTimer || bubbleState.queue.length === 0) return;
+  const step = () => {
+    bubbleState.spawnTimer = null;
+    const layer = $('#bubbleLayer');
+    if (!layer) return;
+    if (isReducedMotion() || document.hidden) { bubbleState.spawnTimer = setTimeout(step, 3000); return; }
+    if (bubbleState.queue.length === 0) {
+      bubbleState.shown.clear();
+      if (bubbleState.cycleTimer) clearTimeout(bubbleState.cycleTimer);
+      bubbleState.cycleTimer = setTimeout(() => {
+        bubbleState.cycleTimer = null;
+        const src = (weddingData.endpoints && weddingData.endpoints.wishes) ? bubbleState.onlineWishes : getLocalWishes();
+        queueBubbles(src);
+      }, 6000);
+      return;
+    }
+    if (layer.childElementCount >= 8) { bubbleState.spawnTimer = setTimeout(step, 2000); return; }
+    const w = bubbleState.queue.shift();
+    spawnBubble(w);
+    bubbleState.spawnTimer = setTimeout(step, 1500);
+  };
+  step();
 }
 async function loadOnlineWishes() {
   const url = weddingData.endpoints && weddingData.endpoints.wishes;
@@ -1330,18 +1371,15 @@ function startWishPolling() {
   if (bubbleState.polling) return;
   const tick = async () => {
     if (document.hidden) return;
-    const before = new Set(bubbleState.shown);
-    let fresh = [];
     if (weddingData.endpoints && weddingData.endpoints.wishes) {
       const online = await loadOnlineWishes();
       renderWishes();
-      fresh = online.filter(w => !before.has(wishKey(w)));
+      queueBubbles(online);
     } else {
       // CHẾ ĐỘ LOCAL: chỉ thả bong bóng cho lời chúc đã lưu trên máy này.
       renderWishes();
-      fresh = getLocalWishes().filter(w => !before.has(wishKey(w)));
+      queueBubbles(getLocalWishes());
     }
-    spawnBubblesStaggered(fresh);
   };
   tick();
   bubbleState.polling = setInterval(tick, 45000);
@@ -1441,6 +1479,8 @@ function setupGift() {
     });
   }
   if (qr) qr.addEventListener('click', () => { galleryImages = [weddingData.giftQrImage]; openLightbox(0); });
+  const qrBride = $('#giftQrBride');
+  if (qrBride) qrBride.addEventListener('click', () => { galleryImages = [weddingData.giftQrImageBride]; openLightbox(0); });
 }
 
 /* ============================================================

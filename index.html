@@ -586,6 +586,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 .btn-sm{min-height:44px;padding:10px 22px;font-size:13px}
 .btn .btn-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
 .hero-cta .btn{font-family:var(--script);font-size:26px;font-weight:500;letter-spacing:0.02em;line-height:1.2;padding:12px 32px}
+.hero-cta .btn-outline:hover{background:rgba(255,255,255,0.22);color:#fff}
 .hero-cta .btn .btn-label{font-family:var(--script)}
 
 /* ============================================================
@@ -674,7 +675,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
       <span class="line"><span data-bind="brideName">Tuyết</span></span>
     </h1>
     <p class="hero-date" data-bind="weddingDateLong">— Chưa thiết lập ngày cưới —</p>
-    <div class="hero-cta"><a href="#invitation" class="btn btn-outline" style="border-color:rgba(255,220,225,0.75);color:#fff"><span class="btn-label">Xem thiệp mời</span></a></div>
+    <div class="hero-cta"><a href="#invitation" class="btn btn-outline" style="border-color:rgba(255,220,225,0.5);color:#fff;background:rgba(255,255,255,0.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)"><span class="btn-label">Xem thiệp mời</span></a></div>
   </div>
   <div class="scroll-cue" aria-hidden="true"><span class="cue-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
 </header>
@@ -766,8 +767,8 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
           <h4>Nhà gái</h4>
           <p class="family-name" data-bind="brideFather">Ông: —</p>
           <p class="family-name" data-bind="brideMother">Bà: —</p>
-          <p class="family-addr" data-bind="brideAddress">Địa chỉ: Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ</p>
-          <p class="family-addr-old" data-bind="brideAddressOld">ĐC trước sáp nhập: Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc</p>
+          <p class="family-addr" data-bind="brideAddress">Địa chỉ: SN 225 - Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ</p>
+          <p class="family-addr-old" data-bind="brideAddressOld">ĐC trước sáp nhập: SN 225 - Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc</p>
           <div style="margin-top:10px"><a class="btn btn-primary btn-sm" data-bind-map="brideMapUrl" href="#" target="_blank" rel="noopener"><span class="btn-label">Xem bản đồ nhà gái</span></a></div>
         </div>
       </div>
@@ -901,7 +902,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 28/10 22:27</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 28/10 28/10 22:34</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -950,18 +951,18 @@ const weddingData = {
   groomAddress: "Địa chỉ: SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ",
   groomAddressOld: "ĐC trước sáp nhập: SN 146 - Thôn Đình - Yên Đồng - Yên Lạc - Vĩnh Phúc",
   groomMapUrl: "https://www.google.com/maps/search/?api=1&query=21.205939,105.55101",
-  brideFather: "Ông: Thông", brideMother: "Bà: Nguyễn Thanh Huyền",
-  brideAddress: "Địa chỉ: Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ",
-  brideAddressOld: "ĐC trước sáp nhập: Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc",
+  brideFather: "Ông: Nguyễn Hữu Thông", brideMother: "Bà: Nguyễn Thị Thanh Huyền",
+  brideAddress: "Địa chỉ: SN 225 - Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ",
+  brideAddressOld: "ĐC trước sáp nhập: SN 225 - Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc",
   brideMapUrl: "https://www.google.com/maps/search/?api=1&query=21.1995739,105.5552271",
 
   venueName: "Trung tâm Hội nghị White Palace",
   venueMapUrl: "https://www.google.com/maps/search/?api=1&query=White+Palace+Ho+Chi+Minh",
 
   schedule: [
-    { time: "15:00 — 16:30", title: "Lễ tại nhà gái", place: "Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Địa chỉ chưa sáp nhập: Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc.\nLễ vu quy đơn giản cùng gia đình.", mapUrl: "https://www.google.com/maps/search/?api=1&query=21.1995739,105.5552271" },
+    { time: "15:00 — 16:30", title: "Lễ tại nhà gái", place: "SN 225 - Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Địa chỉ chưa sáp nhập: SN 225 - Thôn Chùa - Yên Đồng - Yên Lạc - Vĩnh Phúc.\nLễ vu quy đơn giản cùng gia đình.", mapUrl: "https://www.google.com/maps/search/?api=1&query=21.1995739,105.5552271" },
     { time: "17:00 — 17:30", title: "Lễ thành hôn", place: "SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Địa chỉ chưa sáp nhập: SN 146 - Thôn Đình - Yên Đồng - Yên Lạc - Vĩnh Phúc.\nNghi thức chính thức trước sự chứng kiến của gia đình và bạn bè.", mapUrl: "https://www.google.com/maps/search/?api=1&query=SN+146+Thon+Dinh+Tam+Hong+Yen+Lac+Phu+Tho" },
-    { time: "18:00 — 21:30", title: "Tiệc cưới", place: "Nhà trai: SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ\nNhà gái: Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Tiệc thân mật, chúc mừng và lưu lại những khoảnh khắc. Tiệc cưới tổ chức tại cả nhà trai và nhà gái.", mapUrl: "" }
+    { time: "18:00 — 21:30", title: "Tiệc cưới", place: "Nhà trai: SN 146 - Thôn Đình - Tam Hồng - Yên Lạc - Phú Thọ\nNhà gái: SN 225 - Thôn Chùa - Tam Hồng - Yên Lạc - Phú Thọ", desc: "Tiệc thân mật, chúc mừng và lưu lại những khoảnh khắc. Tiệc cưới tổ chức tại cả nhà trai và nhà gái.", mapUrl: "" }
   ],
 
   story: [

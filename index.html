@@ -505,7 +505,10 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .gift-person-title{margin-top:0;margin-bottom:18px;font-size:15px}
 .gift-person .gift-owner{margin-bottom:22px}
 .gift-person .gift-qr{margin-bottom:0}
-.gift-account-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+.gift-account-row{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.gift-account-row .copy-icon-btn{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.copy-toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-bottom));transform:translateX(-50%) translateY(12px);background:var(--accent-deep);color:#fff;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;z-index:80;opacity:0;visibility:hidden;transition:opacity .3s,transform .3s,visibility .3s;box-shadow:0 8px 24px rgba(0,0,0,.18);white-space:nowrap}
+.copy-toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 .gift-account-row .gift-account{margin-bottom:0}
 .copy-icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--accent-deep);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 .copy-icon-btn svg{width:18px;height:18px}
@@ -953,7 +956,9 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 12:25</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 12:32</span></footer>
+
+<div class="copy-toast" id="copyToast" role="status">Đã sao chép số tài khoản ✓</div>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -1552,8 +1557,8 @@ function setupGift() {
   const copyBtn = $('#copyAccBtn'), qr = $('#giftQr');
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
-      const acc = weddingData.giftAccount; const original = copyBtn.innerHTML;
-      const done = () => { copyBtn.innerHTML = '✓'; copyBtn.classList.add('copied'); setTimeout(() => { copyBtn.innerHTML = original; copyBtn.classList.remove('copied'); }, 1600); };
+      const acc = weddingData.giftAccount; const original = copyBtn.innerHTML; const toast = $('#copyToast'); let toastTimer = null;
+      const done = () => { copyBtn.innerHTML = '✓'; copyBtn.classList.add('copied'); if (toast) { toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 1800); } setTimeout(() => { copyBtn.innerHTML = original; copyBtn.classList.remove('copied'); }, 1600); };
       try { await navigator.clipboard.writeText(acc); done(); }
       catch {
         const ta = document.createElement('textarea'); ta.value = acc; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();

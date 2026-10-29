@@ -144,9 +144,9 @@ a{color:inherit;text-decoration:none}
   box-shadow:var(--shadow-md);
 }
 .opener.opening .opener-content{opacity:0;transform:scale(0.92) translateY(-16px)}
-.opener-content::before,.opener-content::after{content:'';position:absolute;width:18px;height:18px;border:1px solid var(--accent)}
-.opener-content::before{top:14px;left:14px;border-right:none;border-bottom:none;border-top-left-radius:12px}
-.opener-content::after{bottom:14px;right:14px;border-left:none;border-top:none;border-bottom-right-radius:12px}
+.opener-content::before,.opener-content::after{content:'';position:absolute;width:36px;height:36px;border:1px solid var(--accent)}
+.opener-content::before{top:14px;left:14px;border-right:none;border-bottom:none;border-top-left-radius:26px}
+.opener-content::after{bottom:14px;right:14px;border-left:none;border-top:none;border-bottom-right-radius:26px}
 .opener-eyebrow{font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:22px;font-weight:600;opacity:0;animation:openerFadeUp var(--t-slower) var(--ease-out) 0.2s forwards}
 .opener-names{font-family:var(--script);font-weight:500;font-size:clamp(3.8rem,18vw,6rem);line-height:1.05;letter-spacing:0.01em;margin-bottom:14px}
 .opener-names .name-row{display:block;overflow:hidden;padding:0.10em 0 0.30em}
@@ -193,8 +193,8 @@ body.hero-in .hero-media img{transform:scale(1.14)}
 .hero-content .eyebrow{color:rgba(255,240,242,0.95);margin-bottom:18px;opacity:0;transform:translateY(14px)}
 .hero-names{font-family:var(--script);font-weight:500;line-height:1.05;font-size:clamp(calc(4.5rem + 30px),calc(22vw + 30px),calc(8.5rem + 30px));letter-spacing:0.01em;margin-bottom:18px;text-shadow:0 2px 28px rgba(74,47,53,0.35)}
 .hero-names .line{display:block;overflow:hidden;padding:0.10em 0 0.30em}
-.hero-names .line:nth-child(1){text-align:left;padding-left:18%;transform:translateY(0.19em)}
-.hero-names .line:nth-child(3){text-align:right;padding-right:18%;margin-top:-0.25em}
+.hero-names .line:nth-child(1){text-align:left;padding-left:calc(18% - 50px);transform:translateY(0.19em)}
+.hero-names .line:nth-child(3){text-align:right;padding-right:calc(18% - 50px);margin-top:-0.25em}
 .hero-names .line>span{display:inline-block;transform:translateY(120%)}
 .hero-names .amp{display:block;position:relative;z-index:2;font-style:italic;color:#FFD5DC;font-size:0.55em;margin:-6px 0 -10px;line-height:1;opacity:0}
 .hero-date{font-family:var(--serif);font-style:italic;font-size:1.05rem;letter-spacing:0.08em;margin-bottom:0;opacity:0;transform:translateY(14px);color:rgba(255,245,246,0.95)}
@@ -934,7 +934,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 11:25</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 11:34</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>

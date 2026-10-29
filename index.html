@@ -209,7 +209,7 @@ body.hero-in .hero-cta{animation:heroIn var(--t-base) var(--ease-out) 1.6s forwa
 @keyframes heroIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes heroFadeIn{from{opacity:0}to{opacity:1}}
 
-.bottom-bar{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:calc(80px + var(--safe-bottom));z-index:60;display:flex;gap:2px;align-items:stretch;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;box-shadow:0 8px 28px rgba(212,122,136,0.28);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast),transform var(--t-fast);max-width:calc(100% - 32px);width:320px}
+.bottom-bar{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:calc(80px + var(--safe-bottom));z-index:60;display:flex;gap:2px;align-items:stretch;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:6px 8px;box-shadow:0 8px 28px rgba(212,122,136,0.28);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast),transform var(--t-fast);max-width:calc(100% - 32px);width:280px}
 body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);transition-delay:2s}
 .bottom-bar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--accent-deep);text-decoration:none;padding:4px 2px;border-radius:999px}
 .bottom-bar a svg{width:20px;height:20px}
@@ -567,6 +567,26 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 .music-btn.playing .icon-play{display:none}
 
 /* ============================================================
+   NÚT LÊN ĐẦU TRANG (góc dưới bên trái, đối diện nút nhạc)
+   ============================================================ */
+.top-btn{
+  position:fixed;
+  left:calc(16px + var(--safe-left, 0px));
+  bottom:calc(16px + var(--safe-bottom));
+  z-index:60;
+  display:flex;align-items:center;gap:6px;
+  background:#fff;color:var(--accent-deep);
+  border:1px solid rgba(212,122,136,0.25);
+  border-radius:999px;padding:10px 14px;
+  font-family:var(--sans);font-size:11px;font-weight:600;white-space:nowrap;
+  box-shadow:0 8px 28px rgba(212,122,136,0.28);
+  transition:transform var(--t-fast),background var(--t-fast),opacity var(--t-fast);
+  opacity:0;visibility:hidden;pointer-events:none;
+}
+body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transition-delay:2s}
+.top-btn:active{background:rgba(212,122,136,0.12)}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer{text-align:center;padding:40px 24px calc(150px + var(--safe-bottom));font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-soft);background:var(--bg);border-top:1px solid var(--line-soft)}
@@ -908,7 +928,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 09:21</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 09:37</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -920,6 +940,12 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
   <a href="#invitation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Xem thiệp mời</span></a>
   <a href="#gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg><span>Mừng cưới</span></a>
 </nav>
+
+<!-- NÚT LÊN ĐẦU TRANG -->
+<button class="top-btn" id="topBtn" aria-label="Lên đầu trang">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/></svg>
+  <span>Lên đầu trang</span>
+</button>
 
 <!-- MUSIC BUTTON -->
 <button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc nền">
@@ -1586,6 +1612,7 @@ function init() {
   observeAll();
   initOpener();
   initMusic();
+  document.getElementById('topBtn').addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
   console.log('%c[Wedding]', 'color:#d47a88;font-weight:bold', 'Ready. Music:', weddingData.music);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

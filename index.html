@@ -215,9 +215,10 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .bottom-bar a svg{width:20px;height:20px}
 .bottom-bar a span{font-size:10px;font-weight:600;white-space:nowrap;font-family:var(--sans)}
 .bottom-bar a:active{background:rgba(212,122,136,0.12)}
-.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
+.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
+.scroll-cue .cue-text{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;white-space:nowrap}
 .scroll-cue .cue-arrow{display:block;line-height:1;animation:cueBounce 2200ms var(--ease-in-out) infinite}
-.scroll-cue .cue-arrow svg{display:block;width:24px;height:24px}
+.scroll-cue .cue-arrow svg{display:block;width:32px;height:32px}
 @keyframes cueBounce{0%,100%{transform:translateY(0);opacity:0.9}50%{transform:translateY(8px);opacity:0.6}}
 @keyframes cueDrop{0%{transform:scaleY(0);opacity:1}50%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
@@ -574,11 +575,11 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
   left:calc(16px + var(--safe-left, 0px));
   bottom:calc(16px + var(--safe-bottom));
   z-index:60;
-  display:flex;align-items:center;gap:6px;
+  width:52px;height:52px;
+  display:flex;align-items:center;justify-content:center;
   background:#fff;color:var(--accent-deep);
   border:1px solid rgba(212,122,136,0.25);
-  border-radius:999px;padding:10px 14px;
-  font-family:var(--sans);font-size:11px;font-weight:600;white-space:nowrap;
+  border-radius:50%;padding:0;
   box-shadow:0 8px 28px rgba(212,122,136,0.28);
   transition:transform var(--t-fast),background var(--t-fast),opacity var(--t-fast);
   opacity:0;visibility:hidden;pointer-events:none;
@@ -703,7 +704,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
     </h1>
     <p class="hero-date" data-bind="weddingDateLong">— Chưa thiết lập ngày cưới —</p>
   </div>
-  <div class="scroll-cue" aria-hidden="true"><span class="cue-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
+  <div class="scroll-cue" aria-hidden="true"><span class="cue-text">Kéo xuống</span><span class="cue-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
 </header>
 
 <!-- MARQUEE -->
@@ -928,7 +929,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 09:37</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 10:06</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -943,8 +944,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 
 <!-- NÚT LÊN ĐẦU TRANG -->
 <button class="top-btn" id="topBtn" aria-label="Lên đầu trang">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/></svg>
-  <span>Lên đầu trang</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/></svg>
 </button>
 
 <!-- MUSIC BUTTON -->

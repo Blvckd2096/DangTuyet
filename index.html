@@ -191,13 +191,13 @@ body.hero-in .hero-media img{transform:scale(1.14)}
 }
 .hero-content{position:relative;z-index:2;padding:0 24px;text-align:center;color:#fff;max-width:560px;margin:0 auto;width:100%}
 .hero-content .eyebrow{color:rgba(255,240,242,0.95);margin-bottom:18px;opacity:0;transform:translateY(14px)}
-.hero-names{font-family:var(--script);font-weight:500;line-height:1.05;font-size:clamp(4.5rem,22vw,8.5rem);letter-spacing:0.01em;margin-bottom:18px;text-shadow:0 2px 28px rgba(74,47,53,0.35)}
+.hero-names{font-family:var(--script);font-weight:500;line-height:1.05;font-size:clamp(calc(4.5rem + 30px),calc(22vw + 30px),calc(8.5rem + 30px));letter-spacing:0.01em;margin-bottom:18px;text-shadow:0 2px 28px rgba(74,47,53,0.35)}
 .hero-names .line{display:block;overflow:hidden;padding:0.10em 0 0.30em}
 .hero-names .line:nth-child(1){text-align:left;padding-left:18%;transform:translateY(0.19em)}
 .hero-names .line:nth-child(3){text-align:right;padding-right:18%;margin-top:-0.25em}
 .hero-names .line>span{display:inline-block;transform:translateY(120%)}
 .hero-names .amp{display:block;position:relative;z-index:2;font-style:italic;color:#FFD5DC;font-size:0.55em;margin:-6px 0 -10px;line-height:1;opacity:0}
-.hero-date{font-family:var(--serif);font-style:italic;font-size:1.05rem;letter-spacing:0.08em;margin-bottom:28px;opacity:0;transform:translateY(14px);color:rgba(255,245,246,0.95)}
+.hero-date{font-family:var(--serif);font-style:italic;font-size:1.05rem;letter-spacing:0.08em;margin-bottom:0;opacity:0;transform:translateY(14px);color:rgba(255,245,246,0.95)}
 .hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(14px)}
 body.hero-in .hero-content .eyebrow{animation:heroIn var(--t-slower) var(--ease-out) 0.2s forwards}
 body.hero-in .hero-names .line:nth-child(1)>span{animation:heroMaskUp 1300ms var(--ease-out) 0.4s forwards}
@@ -215,7 +215,7 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .bottom-bar a svg{width:16px;height:16px}
 .bottom-bar a span{font-size:9px;font-weight:600;white-space:nowrap;font-family:var(--sans)}
 .bottom-bar a:active{background:rgba(212,122,136,0.12)}
-.scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
+.scroll-cue{position:relative;z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:4px;margin:20px auto 0;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
 .scroll-cue .cue-text{font-family:var(--script);font-size:22px;font-weight:500;letter-spacing:0.02em;line-height:1.2;white-space:nowrap;animation:cueBounce 2200ms var(--ease-in-out) infinite}
 .scroll-cue .cue-arrow{display:block;line-height:1;animation:cueBounce 2200ms var(--ease-in-out) infinite}
 .scroll-cue .cue-arrow svg{display:block;width:32px;height:32px}
@@ -708,8 +708,8 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
       <span class="line"><span data-bind="brideName">Tuyết</span></span>
     </h1>
     <p class="hero-date" data-bind="weddingDateLong">— Chưa thiết lập ngày cưới —</p>
+    <div class="scroll-cue" aria-hidden="true"><span class="cue-text">Kéo xuống</span><span class="cue-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
   </div>
-  <div class="scroll-cue" aria-hidden="true"><span class="cue-text">Kéo xuống</span><span class="cue-arrow"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span></div>
 </header>
 
 <!-- MARQUEE -->
@@ -934,7 +934,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 11:09</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 11:25</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>

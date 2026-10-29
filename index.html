@@ -216,7 +216,7 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .bottom-bar a span{font-size:10px;font-weight:600;white-space:nowrap;font-family:var(--sans)}
 .bottom-bar a:active{background:rgba(212,122,136,0.12)}
 .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,240,242,0.9);font-family:var(--serif);font-size:24px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0;animation:heroFadeIn var(--t-slow) var(--ease-out) 2.2s forwards}
-.scroll-cue .cue-text{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;white-space:nowrap}
+.scroll-cue .cue-text{font-family:var(--script);font-size:22px;font-weight:500;letter-spacing:0.02em;line-height:1.2;white-space:nowrap;animation:cueBounce 2200ms var(--ease-in-out) infinite}
 .scroll-cue .cue-arrow{display:block;line-height:1;animation:cueBounce 2200ms var(--ease-in-out) infinite}
 .scroll-cue .cue-arrow svg{display:block;width:32px;height:32px}
 @keyframes cueBounce{0%,100%{transform:translateY(0);opacity:0.9}50%{transform:translateY(8px);opacity:0.6}}
@@ -552,9 +552,9 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
   opacity:0;visibility:hidden;pointer-events:none;
 }
 body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transition-delay:2s}
-.music-btn.playing{background:var(--accent-deep);color:#fff}
+.music-btn.playing{background:#fff;color:var(--accent-deep)}
 .music-btn .eq{display:none;gap:2px;align-items:flex-end;height:16px}
-.music-btn.playing .eq{display:flex}
+.music-btn.playing .eq{display:none}
 .music-btn .eq span{width:3px;background:#fff;border-radius:1px;height:20%}
 .music-btn.playing .eq span:nth-child(1){animation:eq1 1s ease-in-out infinite}
 .music-btn.playing .eq span:nth-child(2){animation:eq2 0.8s ease-in-out infinite}
@@ -566,6 +566,9 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 @keyframes eq4{0%,100%{height:70%}50%{height:20%}}
 .music-btn .icon-play{display:block}
 .music-btn.playing .icon-play{display:none}
+.music-btn .icon-disc{display:none}
+.music-btn.playing .icon-disc{display:block;animation:discSpin 2.5s linear infinite}
+@keyframes discSpin{to{transform:rotate(360deg)}}
 
 /* ============================================================
    NÚT LÊN ĐẦU TRANG (góc dưới bên trái, đối diện nút nhạc)
@@ -929,7 +932,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 10:06</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 29/10 10:16</span></footer>
 
 <!-- LỚP BONG BÓNG LỜI CHÚC (chỉ hiển thị, không chặn bấm) -->
 <div id="bubbleLayer" aria-hidden="true"></div>
@@ -951,6 +954,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 <button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc nền">
   <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
   <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <svg class="icon-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/><circle cx="12" cy="5.5" r="1.2" fill="currentColor" stroke="none"/></svg>
 </button>
 <audio id="bgMusic" loop preload="none"></audio>
 

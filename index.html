@@ -473,6 +473,12 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 /* RSVP: 2 nút Có đến / Không đến được thu nhỏ 40% (còn 60%), chữ vừa ô và căn giữa. */
 #rsvpForm .radio-option{display:flex;align-items:center;justify-content:center;padding:7px 8px;min-height:36px}
 #rsvpForm .radio-option span{font-size:12px;line-height:1.35;text-align:center}
+.guest-chips{display:flex;gap:6px}
+#rsvpForm .guest-chip{flex:1;position:relative;padding:8px 2px;min-height:34px;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:0;letter-spacing:0;text-transform:none;cursor:pointer;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);transition:border-color var(--t-fast),background var(--t-fast),color var(--t-fast)}
+.guest-chip input{position:absolute;opacity:0;pointer-events:none}
+#rsvpForm .guest-chip span{font-size:13px;font-weight:600;text-align:center}
+#rsvpForm .guest-chip:has(input:checked){border-color:var(--accent-deep);background:var(--accent-deep);color:#fff;box-shadow:0 4px 16px rgba(212,122,136,0.3)}
+#rsvpForm #rsvpNote{height:46px;min-height:46px;resize:vertical}
 .form-status{
   padding:12px;margin-bottom:12px;
   font-size:14px;
@@ -531,18 +537,80 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 /* ============================================================
    WISHES
    ============================================================ */
-.wish-list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.wish-list{margin-top:16px;display:flex;flex-direction:column;gap:10px;width:100%}
+#wishes .wish-item{width:100%;box-sizing:border-box}
+.wish-icons{display:flex;gap:8px;flex-wrap:wrap}
+#wishForm .wish-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:0;letter-spacing:0;text-transform:none;cursor:pointer;background:var(--bg);border:1px solid var(--line);transition:border-color var(--t-fast),background var(--t-fast),box-shadow var(--t-fast)}
+#wishForm .wish-icon input{position:absolute;opacity:0;pointer-events:none}
+#wishForm .wish-icon span{font-size:20px;line-height:1}
+#wishForm .wish-icon:has(input:checked){border:2px solid var(--accent-deep);background:#fff;box-shadow:0 4px 14px rgba(212,122,136,0.30)}
 .wish-item{
-  padding:12px 16px;
+  padding:14px 16px;
   background:var(--bg-card);
   animation:statusIn var(--t-slow) var(--ease-out);
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-soft);
 }
-.wish-name{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent-deep);margin-bottom:4px;font-weight:500}
+.wish-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
+.wish-item-icon{font-size:20px;line-height:1.4;flex-shrink:0}
+.wish-head-text{flex:1;min-width:0}
+.wish-name{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent-deep);font-weight:500;line-height:1.3}
+.wish-date{font-size:12px;color:var(--ink-soft);margin-top:1px}
+.wish-featured{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:0.08em;color:#fff;background:var(--accent-deep);border-radius:999px;padding:4px 8px}
 .wish-text{font-size:13px;color:var(--ink-soft);line-height:1.55}
+.wish-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.wish-book{font-size:12px;color:var(--ink-soft)}
+.wish-like{border:none;background:none;cursor:pointer;font-size:14px;color:var(--ink-soft);display:flex;align-items:center;gap:4px;padding:2px 4px}
+.wish-like.liked{color:var(--accent-deep)}
+.wish-like:disabled{cursor:default;opacity:1}
+.wish-heart{font-size:16px}
 .wish-empty{text-align:center;color:var(--ink-soft);font-style:italic;padding:24px 16px;font-size:14px}
+.bubble-icon{font-size:20px;line-height:1;margin-bottom:2px}
 
+/* ============================================================
+   MUSIC PLAYER - đơn giản (sóng nhạc + tiến trình + nút điều khiển)
+   ============================================================ */
+.music-player{padding:24px 20px;background:var(--bg-card);margin-top:24px;border-radius:var(--radius-xl);box-shadow:var(--shadow-md)}
+.music-wave-row{display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.music-wave-play{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.music-wave-play span{margin-left:2px}
+.music-wave{flex:1;display:flex;align-items:center;justify-content:center;gap:3px;height:36px;min-width:0}
+.wave-bar{width:3px;background:var(--ink);border-radius:2px;flex-shrink:0;transform-origin:center}
+.music-wave.playing .wave-bar{animation:wavePulse 0.9s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes wavePulse{0%,100%{transform:scaleY(0.55)}50%{transform:scaleY(1)}}
+.music-heart-row{display:flex;justify-content:flex-end;margin-bottom:2px}
+.music-heart{border:none;background:none;font-size:20px;color:var(--ink);cursor:pointer;padding:2px 4px;line-height:1}
+.music-heart.fav{color:var(--accent-deep)}
+.music-progress{position:relative;height:3px;background:rgba(74,47,53,0.15);border-radius:2px;cursor:pointer;margin-bottom:22px}
+.music-progress-fill{position:absolute;left:0;top:0;height:100%;background:var(--ink);border-radius:2px;width:0%}
+.music-progress-dot{position:absolute;top:50%;left:0%;width:14px;height:14px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%)}
+.music-controls-simple{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.music-mini-btn{border:none;background:none;font-size:20px;color:var(--ink);cursor:pointer;padding:6px;line-height:1}
+.music-mini-btn.active{color:var(--accent-deep)}
+.music-main-play{width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 8px 24px rgba(74,47,53,0.25)}
+.music-main-play span{margin-left:2px}
+.music-song-name{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:12px}
+.music-end{padding:24px 22px 0;background:var(--bg)}
+.music-end{padding:14px 22px 0;background:transparent}
+.music-end .music-player{background:transparent;box-shadow:none;padding:0;width:60%;margin:0 auto}
+.music-end .music-wave-play{width:32px;height:32px;font-size:13px}
+.music-end .music-wave{height:24px;gap:2px}
+.music-end .wave-bar{width:2px}
+.music-end .music-progress{margin-bottom:14px}
+.music-end .music-progress-dot{width:10px;height:10px}
+.music-end .music-controls-simple{justify-content:space-between;margin-bottom:8px}
+.music-mini-btn .repeat-badge{display:none;font-size:10px;font-weight:700;vertical-align:super}
+.music-mini-btn.repeat-one .repeat-badge{display:inline}
+.music-end .music-mini-btn{font-size:18px}
+.music-end .music-main-play{width:38px;height:38px;font-size:15px;box-shadow:none}
+.music-end .music-song-name{font-size:11px;margin-bottom:0}
+
+.music-end .music-player{margin-top:0}
+.music-track-list{display:flex;flex-direction:column;gap:6px}
+.music-track{width:100%;display:flex;align-items:center;gap:8px;text-align:left;padding:8px 10px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font-family:var(--sans);font-size:13px}
+.music-track.active{border-color:var(--accent-deep);background:#fff}
+.music-track-num{font-size:12px;color:var(--accent-deep);font-weight:700;flex-shrink:0}
+.music-track-title{flex:1;min-width:0}
 /* ============================================================
    THANK YOU
    ============================================================ */
@@ -575,7 +643,7 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
   opacity:0;visibility:hidden;pointer-events:none;
 }
 body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transition-delay:2s}
-.music-btn.playing{background:rgba(255,255,255,0.50);color:var(--accent-deep)}
+.music-btn.playing{background:rgba(255,255,255,0.95);color:var(--accent-deep);border:1.5px solid var(--accent-deep);box-shadow:0 8px 28px rgba(212,122,136,0.45)}
 .music-btn .eq{display:none;gap:2px;align-items:flex-end;height:16px}
 .music-btn.playing .eq{display:none}
 .music-btn .eq span{width:3px;background:#fff;border-radius:1px;height:20%}
@@ -590,7 +658,7 @@ body.hero-in .music-btn{opacity:1;visibility:visible;pointer-events:auto;transit
 .music-btn .icon-play{display:block}
 .music-btn.playing .icon-play{display:none}
 .music-btn .icon-disc{display:none}
-.music-btn.playing .icon-disc{display:block;animation:discSpin 2.5s linear infinite}
+.music-btn.playing .icon-disc{display:block;width:34px;height:34px;animation:discSpin 2s linear infinite;filter:drop-shadow(0 0 6px rgba(212,122,136,0.55))}
 @keyframes discSpin{to{transform:rotate(360deg)}}
 
 /* ============================================================
@@ -862,57 +930,11 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
     <div class="timeline" id="scheduleList"></div>
   </div>
 </section>
-<!-- WISHES -->
-<section class="section" id="wishes" style="background:var(--bg-alt)">
-  <div class="container">
-    <div style="text-align:center">
-      <span class="chapter-marker reveal"><span class="num">VII</span> · Lời chúc</span>
-      <h2 class="section-title split-words" data-split>Gửi trao yêu thương</h2>
-    </div>
-    <div class="form-card reveal" style="--delay:150ms">
-      <div class="form-status" id="wishStatus" role="alert" aria-live="polite"></div>
-      <form id="wishForm" novalidate>
-        <div class="field"><label for="wishName">Tên của bạn</label><input type="text" id="wishName" name="name" placeholder="Ví dụ: Chị Hoa" maxlength="80" required><div class="field-error">Vui lòng nhập tên</div></div>
-        <div class="field"><label for="wishText">Lời chúc</label><textarea id="wishText" name="message" placeholder="Gửi lời chúc đến cô dâu chú rể..." maxlength="500" required></textarea><div class="field-error">Vui lòng nhập lời chúc</div></div>
-        <button type="submit" class="btn btn-primary" style="width:100%"><span class="btn-label">Gửi lời chúc</span></button>
-      </form>
-    </div>
-    <div class="wish-list" id="wishList"></div>
-  </div>
-</section>
-<!-- RSVP -->
-<section class="section" id="rsvp">
-  <div class="container">
-    <div style="text-align:center">
-      <span class="chapter-marker reveal"><span class="num">VIII</span> · Xác nhận tham dự</span>
-      <h2 class="section-title split-words" data-split>Bạn sẽ đến chứ?</h2>
-      <p class="section-sub reveal" style="--delay:300ms;margin-top:14px">Sự hiện diện của bạn là niềm vui của chúng mình</p>
-    </div>
-    <div class="form-card reveal" style="--delay:250ms">
-      <div class="form-status" id="rsvpStatus" role="alert" aria-live="polite"></div>
-      <form id="rsvpForm" novalidate>
-        <div class="field"><label for="rsvpName">Họ và tên</label><input type="text" id="rsvpName" name="name" placeholder="Nguyễn Văn A" maxlength="80" required autocomplete="name"><div class="field-error">Vui lòng nhập họ tên</div></div>
-        <div class="field"><label for="rsvpPhone">Số điện thoại (không bắt buộc)</label><input type="tel" id="rsvpPhone" name="phone" placeholder="09xx xxx xxx" maxlength="20" inputmode="tel" autocomplete="tel"></div>
-        <div class="field">
-          <label>Bạn sẽ tham dự?</label>
-          <div class="radio-group">
-            <label class="radio-option"><input type="radio" name="attendance" value="yes" required><span>Có, mình sẽ đến</span></label>
-            <label class="radio-option"><input type="radio" name="attendance" value="no"><span>Rất tiếc, không đến được</span></label>
-          </div>
-          <div class="field-error">Vui lòng chọn</div>
-        </div>
-        <div class="field" id="guestsField"><label for="rsvpGuests">Số người tham dự</label><select id="rsvpGuests" name="guests"><option value="1">1 người</option><option value="2">2 người</option><option value="3">3 người</option><option value="4">4 người</option><option value="5">5 người</option></select></div>
-        <div class="field"><label for="rsvpNote">Lời nhắn (không bắt buộc)</label><textarea id="rsvpNote" name="note" placeholder="Ví dụ: Ăn chay, dị ứng..." maxlength="300"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%"><span class="btn-label">Gửi xác nhận</span></button>
-      </form>
-    </div>
-  </div>
-</section>
 <!-- GIFT -->
 <section class="section" id="gift" style="background:var(--bg-alt)">
   <div class="container">
     <div style="text-align:center">
-      <span class="chapter-marker reveal"><span class="num">IX</span> · Hộp quà cưới</span>
+      <span class="chapter-marker reveal"><span class="num">VII</span> · Hộp quà cưới</span>
       <h2 class="section-title split-words" data-split>Tấm lòng của bạn</h2>
     </div>
     <div class="gift-card reveal-zoom">
@@ -936,6 +958,52 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
     </div>
   </div>
 </section>
+<!-- RSVP -->
+<section class="section" id="rsvp">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="chapter-marker reveal"><span class="num">VIII</span> · Xác nhận tham dự</span>
+      <h2 class="section-title split-words" data-split>Bạn sẽ đến chứ?</h2>
+      <p class="section-sub reveal" style="--delay:300ms;margin-top:14px">Sự hiện diện của bạn là niềm vui của chúng mình</p>
+    </div>
+    <div class="form-card reveal" style="--delay:250ms">
+      <div class="form-status" id="rsvpStatus" role="alert" aria-live="polite"></div>
+      <form id="rsvpForm" novalidate>
+        <div class="field"><label for="rsvpName">Họ và tên</label><input type="text" id="rsvpName" name="name" placeholder="Nguyễn Văn A" maxlength="80" required autocomplete="name"><div class="field-error">Vui lòng nhập họ tên</div></div>
+        <div class="field">
+          <label>Bạn sẽ tham dự?</label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="attendance" value="yes" required><span>Có, mình sẽ đến</span></label>
+            <label class="radio-option"><input type="radio" name="attendance" value="no"><span>Rất tiếc, không đến được</span></label>
+          </div>
+          <div class="field-error">Vui lòng chọn</div>
+        </div>
+        <div class="field" id="guestsField"><label>Số người tham dự</label><div class="guest-chips" role="radiogroup" aria-label="Số người tham dự"><label class="guest-chip"><input type="radio" name="guests" value="1" checked><span>1</span></label><label class="guest-chip"><input type="radio" name="guests" value="2"><span>2</span></label><label class="guest-chip"><input type="radio" name="guests" value="3"><span>3</span></label><label class="guest-chip"><input type="radio" name="guests" value="4"><span>4</span></label><label class="guest-chip"><input type="radio" name="guests" value="5"><span>5</span></label><label class="guest-chip"><input type="radio" name="guests" value="6"><span>6</span></label></div></div>
+        <div class="field"><label for="rsvpNote">Lời nhắn (không bắt buộc)</label><textarea id="rsvpNote" name="note" placeholder="Ví dụ: Ăn chay, dị ứng..." maxlength="300"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%"><span class="btn-label">Gửi xác nhận</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- WISHES -->
+<section class="section" id="wishes" style="background:var(--bg-alt)">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="chapter-marker reveal"><span class="num">IX</span> · Lời chúc</span>
+      <h2 class="section-title split-words" data-split>Gửi trao yêu thương</h2>
+    </div>
+    <div class="form-card reveal" style="--delay:150ms">
+      <div class="form-status" id="wishStatus" role="alert" aria-live="polite"></div>
+      <form id="wishForm" novalidate>
+        <div class="field"><label for="wishName">Tên hoặc danh xưng của bạn *</label><input type="text" id="wishName" name="name" placeholder="Ví dụ: Bạn Minh Anh, Gia đình Bác Hùng..." maxlength="80" required><div class="field-error">Vui lòng nhập tên</div></div>
+        <div class="field"><label for="wishText">Lời chúc *</label><textarea id="wishText" name="message" placeholder="Viết những lời chúc chân thành, ấm áp nhất đến cô dâu &amp; chú rể..." maxlength="500" required></textarea><div class="field-error">Vui lòng nhập lời chúc</div></div>
+        <div class="field"><label>Chọn biểu tượng chúc phúc</label><div class="wish-icons" role="radiogroup" aria-label="Chọn biểu tượng chúc phúc"><label class="wish-icon"><input type="radio" name="icon" value="💗" checked><span>💗</span></label><label class="wish-icon"><input type="radio" name="icon" value="🕊️"><span>🕊️</span></label><label class="wish-icon"><input type="radio" name="icon" value="🌸"><span>🌸</span></label><label class="wish-icon"><input type="radio" name="icon" value="🎉"><span>🎉</span></label><label class="wish-icon"><input type="radio" name="icon" value="✨"><span>✨</span></label><label class="wish-icon"><input type="radio" name="icon" value="💍"><span>💍</span></label></div></div>
+        <button type="submit" class="btn btn-primary" style="width:100%"><span class="btn-label">Gửi lời chúc phúc ✨</span></button>
+      </form>
+    </div>
+    <div class="wish-list" id="wishList"></div>
+  </div>
+</section>
 <!-- THANK YOU -->
 <section class="thank-you" id="thankyou">
   <div class="thank-you-bg"><img data-bind="thankYouImage" alt="Cảm ơn" loading="lazy" width="1200" height="1600" referrerpolicy="no-referrer"></div>
@@ -948,8 +1016,28 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
   </div>
 </section>
 
+<!-- MUSIC PLAYER CUỐI TRANG (không còn là chương X) -->
+<div class="music-end" id="music">
+  <div class="container">
+    <div class="music-player reveal">
+      <div class="music-wave-row">
+        <div class="music-wave" id="musicWave"><span class="wave-bar" style="height:8px;--d:0.00s"></span><span class="wave-bar" style="height:14px;--d:0.12s"></span><span class="wave-bar" style="height:10px;--d:0.24s"></span><span class="wave-bar" style="height:18px;--d:0.36s"></span><span class="wave-bar" style="height:12px;--d:0.48s"></span><span class="wave-bar" style="height:22px;--d:0.00s"></span><span class="wave-bar" style="height:16px;--d:0.12s"></span><span class="wave-bar" style="height:26px;--d:0.24s"></span><span class="wave-bar" style="height:20px;--d:0.36s"></span><span class="wave-bar" style="height:30px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:18px;--d:0.12s"></span><span class="wave-bar" style="height:28px;--d:0.24s"></span><span class="wave-bar" style="height:22px;--d:0.36s"></span><span class="wave-bar" style="height:16px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:20px;--d:0.12s"></span><span class="wave-bar" style="height:14px;--d:0.24s"></span><span class="wave-bar" style="height:26px;--d:0.36s"></span><span class="wave-bar" style="height:18px;--d:0.48s"></span></div>
+      </div>
+      <div class="music-progress" id="musicProgress"><div class="music-progress-fill" id="musicProgressFill"></div><span class="music-progress-dot" id="musicProgressDot"></span></div>
+      <div class="music-controls-simple">
+        <button type="button" class="music-mini-btn" id="musicShuffleBtn" aria-label="Trộn bài">⤨</button>
+        <button type="button" class="music-mini-btn" id="musicPrevBtn" aria-label="Bài trước">⏮</button>
+        <button type="button" class="music-main-play" id="musicPlayBtn" aria-label="Phát / tạm dừng nhạc"><span id="musicPlayIcon">▶</span></button>
+        <button type="button" class="music-mini-btn" id="musicNextBtn" aria-label="Bài tiếp theo">⏭</button>
+        <button type="button" class="music-mini-btn" id="musicRepeatBtn" aria-label="Lặp lại: tất cả / 1 bài / tắt"><span>↻</span><span class="repeat-badge">1</span></button>
+      </div>
+      <p class="music-song-name" id="musicSongName">I Do — 911</p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 16:20</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 22:57</span></footer>
 
 <div class="copy-toast" id="copyToast" role="status">Đã sao chép số tài khoản ✓</div>
 
@@ -973,7 +1061,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 <button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc nền">
   <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
   <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-  <svg class="icon-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/><circle cx="12" cy="5.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+  <svg class="icon-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/><circle cx="12" cy="5.5" r="1.2" fill="currentColor" stroke="none"/></svg>
 </button>
 <audio id="bgMusic" loop preload="none"></audio>
 
@@ -1052,6 +1140,16 @@ const weddingData = {
 
   music: "./music/i-do-911.mp3",
   musicTitle: "I Do — 911",
+  // Danh sách phát cho tab Âm nhạc ở cuối trang. Thêm bài mới: up file mp3 lên thư mục music/ trên repo, rồi thêm 1 dòng { title: "Tên bài — Ca sĩ", src: "./music/ten-file.mp3" } vào đây.
+  musicList: [
+    { title: "I Do — 911", src: "./music/i-do-911.mp3" },
+    { title: "Beautiful In White", src: "./music/Beautiful%20In%20White.mp3" },
+    { title: "Breathless", src: "./music/Breathless.mp3" },
+    { title: "Hạnh Phúc Cuối Cùng", src: "./music/H%E1%BA%A1nh%20Ph%C3%BAc%20Cu%E1%BB%91i%20C%C3%B9ng.mp3" },
+    { title: "Hơn Cả Yêu", src: "./music/H%C6%A1n%20C%E1%BA%A3%20Y%C3%AAu.mp3" },
+    { title: "Marry You", src: "./music/Marry%20You.mp3" },
+    { title: "Until You", src: "./music/Until%20You.mp3" }
+  ],
 
   // BACKEND ONLINE (Google Apps Script) — CHẾ ĐỘ HIỆN TẠI: LOCAL
   // Khi đã triển khai Apps Script (xem Code.gs kèm theo), dán URL vào 2 dòng dưới, giữ nguyên ?action=...:
@@ -1340,7 +1438,7 @@ function spawnBubble(w) {
   el.style.left = (5 + Math.random() * 58) + '%';
   el.style.setProperty('--bd', (14 + Math.random() * 8).toFixed(1) + 's');
   const text = String(w.message || '').slice(0, 90);
-  el.innerHTML = '<div class="bubble-inner"><p class="bubble-name">' + escapeHtml(String(w.name || '').slice(0, 24)) + '</p><p class="bubble-text">' + escapeHtml(text) + '</p></div>';
+  el.innerHTML = '<div class="bubble-inner">' + (w.icon ? '<p class="bubble-icon">' + escapeHtml(String(w.icon)) + '</p>' : '') + '<p class="bubble-name">' + escapeHtml(String(w.name || '').slice(0, 24)) + '</p><p class="bubble-text">' + escapeHtml(text) + '</p></div>';
   el.addEventListener('animationend', () => el.remove());
   layer.appendChild(el);
   return true;
@@ -1385,7 +1483,7 @@ async function loadOnlineWishes() {
     if (!res.ok) return [];
     const data = await res.json();
     const list = Array.isArray(data) ? data : (data.wishes || []);
-    bubbleState.onlineWishes = list.map(w => ({ name: w.name || '', message: w.message || '', ts: w.ts === undefined ? '' : w.ts }));
+    bubbleState.onlineWishes = list.map(w => ({ name: w.name || '', message: w.message || '', icon: w.icon || '', likes: Number(w.likes) || 0, ts: w.ts === undefined ? '' : w.ts }));
     return bubbleState.onlineWishes;
   } catch { return []; }
 }
@@ -1446,7 +1544,7 @@ function setupRsvp() {
   form.addEventListener('submit', async e => {
     e.preventDefault();
     $$('.field', form).forEach(f => f.classList.remove('has-error'));
-    const name = form.name.value.trim(), phone = form.phone.value.trim(), attendance = form.attendance.value, guests = form.guests.value, note = form.note.value.trim();
+    const name = form.name.value.trim(), phone = '', attendance = form.attendance.value, guests = form.guests.value, note = form.note.value.trim();
     let valid = true;
     if (!name) { form.name.closest('.field').classList.add('has-error'); valid = false; }
     if (!attendance) { form.attendance[0].closest('.field').classList.add('has-error'); valid = false; }
@@ -1477,13 +1575,47 @@ function setupRsvp() {
   });
 }
 function getWishKey() { return 'wedding_wishes_' + (weddingData.weddingDate || 'demo'); }
+function getLikedWishKeys() { try { return new Set(JSON.parse(localStorage.getItem('wedding_likes_' + (weddingData.weddingDate || 'demo')) || '[]')); } catch { return new Set(); } }
+function markWishLiked(k) { const s = getLikedWishKeys(); s.add(k); try { localStorage.setItem('wedding_likes_' + (weddingData.weddingDate || 'demo'), JSON.stringify([...s])); } catch {} }
+function formatWishDate(ts) { if (ts === undefined || ts === null || ts === '') return ''; const d = new Date(typeof ts === 'number' ? ts : Number(ts)); if (isNaN(d.getTime())) return ''; return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear(); }
 function renderWishes() {
   const wrap = $('#wishList'); if (!wrap) return;
   const merged = new Map();
-  [...bubbleState.onlineWishes, ...getLocalWishes()].forEach(w => { const k = wishKey(w); if (!merged.has(k)) merged.set(k, w); });
-  const list = [...merged.values()];
+  [...bubbleState.onlineWishes, ...getLocalWishes()].forEach(w => { const k = wishKey(w); if (!merged.has(k)) merged.set(k, w); else { const old = merged.get(k); merged.set(k, { ...old, icon: old.icon || w.icon, likes: (old.likes || 0) || (w.likes || 0) }); } });
+  const list = [...merged.values()].reverse();
   if (list.length === 0) { wrap.innerHTML = `<div class="wish-empty">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc!</div>`; return; }
-  wrap.innerHTML = list.slice().reverse().map(w => `<div class="wish-item"><p class="wish-name">${escapeHtml(w.name)}</p><p class="wish-text">${escapeHtml(w.message)}</p></div>`).join('');
+  const liked = getLikedWishKeys();
+  const featured = new Set([...list].sort((a, b) => (b.likes || 0) - (a.likes || 0)).filter(w => (w.likes || 0) > 0).slice(0, 2).map(w => wishKey(w)));
+  wrap.innerHTML = list.map((w, i) => {
+    const k = wishKey(w); const isLiked = liked.has(k); const date = formatWishDate(w.ts);
+    return `<div class="wish-item"><div class="wish-head">${w.icon ? `<span class="wish-item-icon">${escapeHtml(w.icon)}</span>` : ''}<div class="wish-head-text"><p class="wish-name">${escapeHtml(w.name)}</p>${date ? `<p class="wish-date">${date}</p>` : ''}</div>${featured.has(k) ? '<span class="wish-featured">NỔI BẬT</span>' : ''}</div><p class="wish-text">${escapeHtml(w.message)}</p><div class="wish-foot"><span class="wish-book">Sổ lưu bút đám cưới</span><button type="button" class="wish-like${isLiked ? ' liked' : ''}" data-idx="${i}" ${isLiked ? 'disabled' : ''} aria-label="Thả tim cho lời chúc này"><span class="wish-heart">♥</span> <span class="wish-like-count">${w.likes || 0}</span></button></div></div>`;
+  }).join('');
+  wrap._wishList = list;
+  $$('.wish-like', wrap).forEach(btn => btn.addEventListener('click', () => handleWishLike(Number(btn.dataset.idx), btn)));
+}
+async function handleWishLike(idx, btn) {
+  const wrap = $('#wishList'); const list = wrap ? wrap._wishList : null; if (!list || !list[idx]) return;
+  const w = list[idx]; const k = wishKey(w);
+  if (getLikedWishKeys().has(k)) return;
+  const status = $('#wishStatus');
+  btn.disabled = true;
+  try {
+    if (weddingData.endpoints && weddingData.endpoints.wishes) {
+      const likeUrl = weddingData.endpoints.wishes.replace('action=wishes', 'action=like');
+      const res = await fetch(likeUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ name: w.name, message: w.message }) });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data || data.ok !== true) throw new Error('Server error');
+      w.likes = data.likes;
+      const online = bubbleState.onlineWishes.find(o => wishKey(o) === k); if (online) online.likes = data.likes;
+    } else {
+      const key = getWishKey(); const local = JSON.parse(localStorage.getItem(key) || '[]'); const item = local.find(o => wishKey(o) === k); if (item) { item.likes = (item.likes || 0) + 1; localStorage.setItem(key, JSON.stringify(local)); }
+      w.likes = (w.likes || 0) + 1;
+    }
+    markWishLiked(k); renderWishes();
+  } catch {
+    btn.disabled = false;
+    showStatus(status, 'error', 'Chưa thả tim được. Cần cập nhật Code.gs mới (có mục Lượt thích) rồi thử lại.');
+  }
 }
 function setupWishes() {
   const form = $('#wishForm'); if (!form) return;
@@ -1491,7 +1623,7 @@ function setupWishes() {
   form.addEventListener('submit', async e => {
     e.preventDefault();
     $$('.field', form).forEach(f => f.classList.remove('has-error'));
-    const name = form.name.value.trim(), message = form.message.value.trim();
+    const name = form.name.value.trim(), message = form.message.value.trim(), icon = form.icon ? form.icon.value : '';
     let valid = true;
     if (!name) { form.name.closest('.field').classList.add('has-error'); valid = false; }
     if (!message) { form.message.closest('.field').classList.add('has-error'); valid = false; }
@@ -1499,7 +1631,7 @@ function setupWishes() {
     const btn = form.querySelector('button[type="submit"]'); const label = btn.querySelector('.btn-label'); const original = label.textContent;
     btn.disabled = true; label.textContent = 'Đang gửi...'; showStatus(status, 'info', 'Đang gửi lời chúc...');
     try {
-      const payload = { name, message, ts: Date.now() };
+      const payload = { name, message, icon, likes: 0, ts: Date.now() };
       if (weddingData.endpoints.wishes) {
         // Gửi online bằng text/plain để tránh preflight CORS với Apps Script.
         // Chỉ báo thành công khi server trả { ok: true }; lỗi thì báo lỗi thật, không ghi local rồi báo thành công.
@@ -1591,6 +1723,100 @@ function initMusic() {
 /* ============================================================
    INIT
    ============================================================ */
+let musicPlayerIndex = 0;
+let musicShuffle = false;
+let musicRepeatMode = 'all';
+function getMusicList() { return (weddingData.musicList && weddingData.musicList.length) ? weddingData.musicList : (weddingData.music ? [{ title: weddingData.musicTitle || 'Nhạc cưới', src: weddingData.music }] : []); }
+function getMusicFavs() { try { return new Set(JSON.parse(localStorage.getItem('wedding_music_favs') || '[]')); } catch { return new Set(); } }
+function renderMusicTracks() {
+  const wrap = $('#musicTrackList'); if (!wrap) return;
+  const list = getMusicList();
+  wrap.innerHTML = list.map((tr, i) => `<button type="button" class="music-track${i === musicPlayerIndex ? ' active' : ''}" data-idx="${i}"><span class="music-track-num">${i + 1}.</span><span class="music-track-title">${escapeHtml(tr.title)}</span></button>`).join('');
+  $$('.music-track', wrap).forEach(btn => btn.addEventListener('click', () => {
+    const i = Number(btn.dataset.idx);
+    const audio = $('#bgMusic');
+    if (i === musicPlayerIndex && audio && !audio.paused) { audio.pause(); return; }
+    playMusicTrack(i);
+  }));
+}
+function toggleMusicPlay() {
+  const audio = $('#bgMusic'); if (!audio) return;
+  if (audio.paused || audio.ended) {
+    if (!audio.src) { playMusicTrack(musicPlayerIndex); return; }
+    // Chỉ đổi icon khi trình duyệt xác nhận đã phát/tạm dừng (sự kiện play/pause),
+    // không đổi vội ngay sau khi gọi play() vì lúc đó audio vẫn đang ở trạng thái paused,
+    // bấm lần 2 ngay sau đó sẽ bị ngược trạng thái.
+    audio.play().then(updateMusicPlayerUI).catch(updateMusicPlayerUI);
+  } else {
+    audio.pause(); updateMusicPlayerUI();
+  }
+}
+function updateMusicPlayerUI() {
+  const audio = $('#bgMusic'); const list = getMusicList(); const playing = !!(audio && !audio.paused);
+  const titleEl = $('#musicSongName'); const iconEl = $('#musicPlayIcon'); const waveIcon = $('#musicWavePlayIcon'); const wave = $('#musicWave'); const heart = $('#musicHeartBtn');
+  if (titleEl && list[musicPlayerIndex]) titleEl.textContent = list[musicPlayerIndex].title;
+  if (iconEl) iconEl.textContent = playing ? '❚❚' : '▶';
+  if (waveIcon) waveIcon.textContent = playing ? '❚❚' : '▶';
+  if (wave) wave.classList.toggle('playing', playing);
+  if (heart && list[musicPlayerIndex]) heart.classList.toggle('fav', getMusicFavs().has(list[musicPlayerIndex].src));
+  const shuffleBtn = $('#musicShuffleBtn'); const repeatBtn = $('#musicRepeatBtn');
+  if (shuffleBtn) shuffleBtn.classList.toggle('active', musicShuffle);
+  if (repeatBtn) { repeatBtn.classList.toggle('active', musicRepeatMode !== 'off'); repeatBtn.classList.toggle('repeat-one', musicRepeatMode === 'one'); }
+  renderMusicTracks();
+}
+function updateMusicProgress() {
+  const audio = $('#bgMusic'); const fill = $('#musicProgressFill'); const dot = $('#musicProgressDot');
+  if (!audio || !audio.duration || !isFinite(audio.duration)) return;
+  const pct = (audio.currentTime / audio.duration) * 100;
+  if (fill) fill.style.width = pct + '%';
+  if (dot) dot.style.left = pct + '%';
+}
+function playMusicTrack(i) {
+  const list = getMusicList(); if (!list.length) return;
+  musicPlayerIndex = ((i % list.length) + list.length) % list.length;
+  const audio = $('#bgMusic'); if (!audio) return;
+  audio.loop = (musicRepeatMode === 'one');
+  if (!audio.src || !audio.src.endsWith(list[musicPlayerIndex].src.replace('./', ''))) audio.src = list[musicPlayerIndex].src;
+  audio.volume = 0.55;
+  audio.play().then(updateMusicPlayerUI).catch(updateMusicPlayerUI);
+}
+function nextMusicTrack() {
+  const list = getMusicList(); if (!list.length) return;
+  if (musicShuffle && list.length > 1) {
+    let n; do { n = Math.floor(Math.random() * list.length); } while (n === musicPlayerIndex);
+    playMusicTrack(n);
+  } else playMusicTrack(musicPlayerIndex + 1);
+}
+function setupMusicPlayer() {
+  const audio = $('#bgMusic'); if (!audio) return;
+  const list = getMusicList(); if (!list.length) return;
+  musicPlayerIndex = 0;
+  const prev = $('#musicPrevBtn'), next = $('#musicNextBtn'), play = $('#musicPlayBtn'), wavePlay = $('#musicWavePlayBtn');
+  if (prev) prev.addEventListener('click', () => playMusicTrack(musicPlayerIndex - 1));
+  if (next) next.addEventListener('click', nextMusicTrack);
+  if (play) play.addEventListener('click', toggleMusicPlay);
+  if (wavePlay) wavePlay.addEventListener('click', toggleMusicPlay);
+  const shuffleBtn = $('#musicShuffleBtn'); if (shuffleBtn) shuffleBtn.addEventListener('click', () => { musicShuffle = !musicShuffle; updateMusicPlayerUI(); });
+  const repeatBtn = $('#musicRepeatBtn'); if (repeatBtn) repeatBtn.addEventListener('click', () => { musicRepeatMode = musicRepeatMode === 'all' ? 'one' : musicRepeatMode === 'one' ? 'off' : 'all'; audio.loop = (musicRepeatMode === 'one'); updateMusicPlayerUI(); });
+  const heart = $('#musicHeartBtn'); if (heart) heart.addEventListener('click', () => {
+    const cur = list[musicPlayerIndex]; if (!cur) return;
+    const favs = getMusicFavs();
+    if (favs.has(cur.src)) favs.delete(cur.src); else favs.add(cur.src);
+    try { localStorage.setItem('wedding_music_favs', JSON.stringify([...favs])); } catch {}
+    updateMusicPlayerUI();
+  });
+  const progress = $('#musicProgress'); if (progress) progress.addEventListener('click', (e) => {
+    if (!audio.duration || !isFinite(audio.duration)) return;
+    const r = progress.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    updateMusicProgress();
+  });
+  audio.addEventListener('play', updateMusicPlayerUI);
+  audio.addEventListener('pause', updateMusicPlayerUI);
+  audio.addEventListener('timeupdate', updateMusicProgress);
+  audio.addEventListener('ended', () => { if (musicRepeatMode === 'all') nextMusicTrack(); else if (musicRepeatMode === 'off') updateMusicPlayerUI(); });
+  updateMusicPlayerUI();
+}
 function init() {
   initImageFallback();
   bindData();
@@ -1603,6 +1829,7 @@ function init() {
   setupWishes();
   startPetalFall();
   setupGift();
+  setupMusicPlayer();
   observeAll();
   initOpener();
   initMusic();

@@ -551,10 +551,10 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-soft);
 }
-.wish-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
-.wish-item-icon{font-size:20px;line-height:1.4;flex-shrink:0}
+.wish-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.wish-item-icon{font-size:20px;line-height:1;flex-shrink:0;display:flex;align-items:center}
 .wish-head-text{flex:1;min-width:0}
-.wish-name{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent-deep);font-weight:500;line-height:1.3}
+.wish-name{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent-deep);font-weight:500;line-height:1.3}
 .wish-date{font-size:12px;color:var(--ink-soft);margin-top:1px}
 .wish-featured{flex-shrink:0;font-size:8px;font-weight:700;letter-spacing:0.05em;color:#fff;background:var(--accent-deep);border-radius:999px;padding:2px 6px}
 .wish-text{font-size:13px;color:var(--ink-soft);line-height:1.55}
@@ -586,8 +586,9 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .music-heart-row{display:flex;justify-content:flex-end;margin-bottom:2px}
 .music-heart{border:none;background:none;font-size:20px;color:var(--ink);cursor:pointer;padding:2px 4px;line-height:1}
 .music-heart.fav{color:var(--accent-deep)}
-.music-progress{position:relative;height:3px;background:rgba(74,47,53,0.15);border-radius:2px;cursor:pointer;margin-bottom:22px}
-.music-progress-fill{position:absolute;left:0;top:0;height:100%;background:var(--ink);border-radius:2px;width:0%}
+.music-progress{position:relative;height:20px;display:flex;align-items:center;background:transparent;border-radius:2px;cursor:pointer;touch-action:none;margin-bottom:22px}
+.music-progress::before{content:"";position:absolute;left:0;right:0;height:3px;background:rgba(74,47,53,0.15);border-radius:2px}
+.music-progress-fill{position:absolute;left:0;top:50%;transform:translateY(-50%);height:3px;background:var(--ink);border-radius:2px;width:0%}
 .music-progress-dot{position:absolute;top:50%;left:0%;width:14px;height:14px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%)}
 .music-controls-simple{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .music-mini-btn{border:none;background:none;font-size:20px;color:var(--ink);cursor:pointer;padding:6px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
@@ -601,7 +602,7 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .music-end{padding:14px 22px 0;background:transparent}
 .music-end .music-player{background:transparent;box-shadow:none;padding:0;width:60%;margin:0 auto}
 .music-end .music-wave-play{width:32px;height:32px;font-size:13px}
-.music-end .music-wave{height:24px;gap:2px}
+.music-end .music-wave{height:24px;gap:0;justify-content:space-between;width:80%;flex:none;margin:0 auto}
 .music-end .wave-bar{width:2px}
 .music-end .music-progress{margin-bottom:14px}
 .music-end .music-progress-dot{width:10px;height:10px}
@@ -1029,7 +1030,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
   <div class="container">
     <div class="music-player reveal">
       <div class="music-wave-row">
-        <div class="music-wave" id="musicWave"><span class="wave-bar" style="height:8px;--d:0.00s"></span><span class="wave-bar" style="height:14px;--d:0.12s"></span><span class="wave-bar" style="height:10px;--d:0.24s"></span><span class="wave-bar" style="height:18px;--d:0.36s"></span><span class="wave-bar" style="height:12px;--d:0.48s"></span><span class="wave-bar" style="height:22px;--d:0.00s"></span><span class="wave-bar" style="height:16px;--d:0.12s"></span><span class="wave-bar" style="height:26px;--d:0.24s"></span><span class="wave-bar" style="height:20px;--d:0.36s"></span><span class="wave-bar" style="height:30px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:18px;--d:0.12s"></span><span class="wave-bar" style="height:28px;--d:0.24s"></span><span class="wave-bar" style="height:22px;--d:0.36s"></span><span class="wave-bar" style="height:16px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:20px;--d:0.12s"></span><span class="wave-bar" style="height:14px;--d:0.24s"></span><span class="wave-bar" style="height:26px;--d:0.36s"></span><span class="wave-bar" style="height:18px;--d:0.48s"></span></div>
+        <div class="music-wave" id="musicWave"><span class="wave-bar" style="height:8px;--d:0.00s"></span><span class="wave-bar" style="height:14px;--d:0.12s"></span><span class="wave-bar" style="height:10px;--d:0.24s"></span><span class="wave-bar" style="height:18px;--d:0.36s"></span><span class="wave-bar" style="height:12px;--d:0.48s"></span><span class="wave-bar" style="height:22px;--d:0.00s"></span><span class="wave-bar" style="height:16px;--d:0.12s"></span><span class="wave-bar" style="height:26px;--d:0.24s"></span><span class="wave-bar" style="height:20px;--d:0.36s"></span><span class="wave-bar" style="height:30px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:18px;--d:0.12s"></span><span class="wave-bar" style="height:28px;--d:0.24s"></span><span class="wave-bar" style="height:22px;--d:0.36s"></span><span class="wave-bar" style="height:16px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:20px;--d:0.12s"></span><span class="wave-bar" style="height:14px;--d:0.24s"></span><span class="wave-bar" style="height:26px;--d:0.36s"></span><span class="wave-bar" style="height:18px;--d:0.48s"></span><span class="wave-bar" style="height:8px;--d:0.00s"></span><span class="wave-bar" style="height:14px;--d:0.12s"></span><span class="wave-bar" style="height:10px;--d:0.24s"></span><span class="wave-bar" style="height:18px;--d:0.36s"></span><span class="wave-bar" style="height:12px;--d:0.48s"></span><span class="wave-bar" style="height:22px;--d:0.00s"></span><span class="wave-bar" style="height:16px;--d:0.12s"></span><span class="wave-bar" style="height:26px;--d:0.24s"></span><span class="wave-bar" style="height:20px;--d:0.36s"></span><span class="wave-bar" style="height:30px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:18px;--d:0.12s"></span><span class="wave-bar" style="height:28px;--d:0.24s"></span><span class="wave-bar" style="height:22px;--d:0.36s"></span><span class="wave-bar" style="height:16px;--d:0.48s"></span><span class="wave-bar" style="height:24px;--d:0.00s"></span><span class="wave-bar" style="height:20px;--d:0.12s"></span><span class="wave-bar" style="height:14px;--d:0.24s"></span><span class="wave-bar" style="height:26px;--d:0.36s"></span><span class="wave-bar" style="height:18px;--d:0.48s"></span></div>
       </div>
       <div class="music-progress" id="musicProgress"><div class="music-progress-fill" id="musicProgressFill"></div><span class="music-progress-dot" id="musicProgressDot"></span></div>
       <div class="music-controls-simple">
@@ -1045,7 +1046,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:35</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:53</span></footer>
 
 <div class="copy-toast" id="copyToast" role="status">Đã sao chép số tài khoản ✓</div>
 
@@ -1071,7 +1072,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
   <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <svg class="icon-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6" opacity="0.5"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/><circle cx="12" cy="5.5" r="1.2" fill="currentColor" stroke="none"/></svg>
 </button>
-<audio id="bgMusic" loop preload="none"></audio>
+<audio id="bgMusic" preload="none"></audio>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Xem ảnh">
@@ -1154,7 +1155,7 @@ const weddingData = {
     { title: "Beautiful In White", src: "./music/Beautiful%20In%20White.mp3" },
     { title: "Breathless", src: "./music/Breathless.mp3" },
     { title: "Hạnh Phúc Cuối Cùng", src: "./music/H%E1%BA%A1nh%20Ph%C3%BAc%20Cu%E1%BB%91i%20C%C3%B9ng.mp3" },
-    { title: "Đức Phúc - Hơn Cả Yêu", src: "./music/%C4%90%E1%BB%A9c%20Ph%C3%BAc%20-%20H%C6%A1n%20C%E1%BA%A3%20Y%C3%AAu.m4a" },
+    { title: "Đức Phúc - Hơn Cả Yêu", src: "./music/%C4%90u%CC%9B%CC%81c%20Phu%CC%81c%20-%20Ho%CC%9Bn%20Ca%CC%89%20Ye%CC%82u.m4a" },
     { title: "Marry You", src: "./music/Marry%20You.mp3" },
     { title: "Until You", src: "./music/Until%20You.mp3" }
   ],
@@ -1692,6 +1693,8 @@ function initOpener() {
     opener.classList.add('opening'); setTimeout(() => opener.remove(), 1900);
     if (weddingData.music) {
       audio.volume = 0.55;
+      // Không để loop của thẻ audio giữ bài đầu lặp mãi: chế độ mặc định là lặp tất cả, nên tắt loop ở đây, việc chuyển bài do sự kiện ended lo.
+      audio.loop = false;
       audio.play().then(() => $('#musicBtn').classList.add('playing')).catch(err => {
         console.log('[Wedding] Không phát được nhạc (chưa có file hoặc browser chặn):', err.message);
       });
@@ -1818,12 +1821,23 @@ function setupMusicPlayer() {
     try { localStorage.setItem('wedding_music_favs', JSON.stringify([...favs])); } catch {}
     updateMusicPlayerUI();
   });
-  const progress = $('#musicProgress'); if (progress) progress.addEventListener('click', (e) => {
-    if (!audio.duration || !isFinite(audio.duration)) return;
-    const r = progress.getBoundingClientRect();
-    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
-    updateMusicProgress();
-  });
+  const progress = $('#musicProgress'); if (progress) {
+    let seeking = false;
+    const seekFromEvent = (e) => {
+      if (!audio.duration || !isFinite(audio.duration)) return;
+      const r = progress.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+      audio.currentTime = ratio * audio.duration;
+      updateMusicProgress();
+    };
+    progress.addEventListener('pointerdown', (e) => { seeking = true; try { progress.setPointerCapture(e.pointerId); } catch {} seekFromEvent(e); });
+    progress.addEventListener('pointermove', (e) => { if (seeking) seekFromEvent(e); });
+    const endSeek = () => { seeking = false; };
+    progress.addEventListener('pointerup', endSeek);
+    progress.addEventListener('pointercancel', endSeek);
+  }
+  // Đồng bộ loop với chế độ lặp hiện tại ngay khi cài đặt, tránh loop cũ giữ bài lặp mãi.
+  audio.loop = (musicRepeatMode === 'one');
   audio.addEventListener('play', updateMusicPlayerUI);
   audio.addEventListener('pause', updateMusicPlayerUI);
   audio.addEventListener('timeupdate', updateMusicProgress);

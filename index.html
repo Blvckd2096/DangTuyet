@@ -539,8 +539,8 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
    ============================================================ */
 .wish-list{margin-top:16px;display:flex;flex-direction:column;gap:16px;width:100%}
 #wishes .wish-item{width:100%;box-sizing:border-box}
-.wish-icons{display:flex;gap:8px;flex-wrap:wrap}
-#wishForm .wish-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:0;letter-spacing:0;text-transform:none;cursor:pointer;background:var(--bg);border:1px solid var(--line);transition:border-color var(--t-fast),background var(--t-fast),box-shadow var(--t-fast)}
+.wish-icons{display:flex;gap:8px;flex-wrap:nowrap;justify-content:space-between}
+#wishForm .wish-icon{flex:1 1 0;width:auto;height:auto;aspect-ratio:1;max-width:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;margin-bottom:0;letter-spacing:0;text-transform:none;cursor:pointer;background:var(--bg);border:1px solid var(--line);transition:border-color var(--t-fast),background var(--t-fast),box-shadow var(--t-fast)}
 #wishForm .wish-icon input{position:absolute;opacity:0;pointer-events:none}
 #wishForm .wish-icon span{font-size:20px;line-height:1}
 #wishForm .wish-icon:has(input:checked){border:2px solid var(--accent-deep);background:#fff;box-shadow:0 4px 14px rgba(212,122,136,0.30)}
@@ -1040,7 +1040,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:17</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:20</span></footer>
 
 <div class="copy-toast" id="copyToast" role="status">Đã sao chép số tài khoản ✓</div>
 

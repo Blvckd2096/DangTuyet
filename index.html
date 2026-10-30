@@ -558,9 +558,14 @@ body.hero-in .bottom-bar{opacity:1;visibility:visible;pointer-events:auto;transf
 .wish-date{font-size:12px;color:var(--ink-soft);margin-top:1px}
 .wish-featured{flex-shrink:0;font-size:8px;font-weight:700;letter-spacing:0.05em;color:#fff;background:var(--accent-deep);border-radius:999px;padding:2px 6px}
 .wish-text{font-size:13px;color:var(--ink-soft);line-height:1.55}
-.wish-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.wish-foot{display:flex;align-items:center;justify-content:flex-end;margin-top:10px}
 .wish-book{font-size:12px;color:var(--ink-soft)}
-.wish-like{border:none;background:none;cursor:pointer;font-size:14px;color:var(--ink-soft);display:flex;align-items:center;gap:4px;padding:2px 4px}
+.wish-like{border:none;background:none;cursor:pointer;font-size:14px;color:var(--ink-soft);display:flex;align-items:center;gap:4px;padding:2px 4px;position:relative}
+.wish-like .wish-heart{display:inline-block}
+.wish-like .wish-heart.popping{animation:heartPop .45s ease}
+@keyframes heartPop{0%{transform:scale(1)}35%{transform:scale(1.6);color:var(--accent-deep)}70%{transform:scale(0.9)}100%{transform:scale(1)}}
+.wish-heart-burst{position:absolute;right:6px;top:-4px;font-size:14px;color:var(--accent-deep);pointer-events:none;animation:heartFloat .6s ease-out forwards}
+@keyframes heartFloat{0%{opacity:1;transform:translateY(0) scale(0.8)}100%{opacity:0;transform:translateY(-18px) scale(1.2)}}
 .wish-like.liked{color:var(--accent-deep)}
 .wish-like:disabled{cursor:default;opacity:1}
 .wish-heart{font-size:16px}
@@ -1040,7 +1045,7 @@ body.hero-in .top-btn{opacity:1;visibility:visible;pointer-events:auto;transitio
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:20</span></footer>
+<footer class="footer">Made with love · <span data-bind="groomName">Đăng</span> &amp; <span data-bind="brideName">Tuyết</span><span class="update-stamp">Cập nhật 30/10 23:35</span></footer>
 
 <div class="copy-toast" id="copyToast" role="status">Đã sao chép số tài khoản ✓</div>
 
@@ -1149,7 +1154,7 @@ const weddingData = {
     { title: "Beautiful In White", src: "./music/Beautiful%20In%20White.mp3" },
     { title: "Breathless", src: "./music/Breathless.mp3" },
     { title: "Hạnh Phúc Cuối Cùng", src: "./music/H%E1%BA%A1nh%20Ph%C3%BAc%20Cu%E1%BB%91i%20C%C3%B9ng.mp3" },
-    { title: "Hơn Cả Yêu", src: "./music/H%C6%A1n%20C%E1%BA%A3%20Y%C3%AAu.mp3" },
+    { title: "Đức Phúc - Hơn Cả Yêu", src: "./music/%C4%90%E1%BB%A9c%20Ph%C3%BAc%20-%20H%C6%A1n%20C%E1%BA%A3%20Y%C3%AAu.m4a" },
     { title: "Marry You", src: "./music/Marry%20You.mp3" },
     { title: "Until You", src: "./music/Until%20You.mp3" }
   ],
@@ -1590,7 +1595,7 @@ function renderWishes() {
   const featured = new Set([...list].sort((a, b) => (b.likes || 0) - (a.likes || 0)).filter(w => (w.likes || 0) > 0).slice(0, 2).map(w => wishKey(w)));
   wrap.innerHTML = list.map((w, i) => {
     const k = wishKey(w);
-    return `<div class="wish-item"><div class="wish-head">${w.icon ? `<span class="wish-item-icon">${escapeHtml(w.icon)}</span>` : ''}<div class="wish-head-text"><p class="wish-name">${escapeHtml(w.name)}</p></div>${featured.has(k) ? '<span class="wish-featured">NỔI BẬT</span>' : ''}</div><p class="wish-text">${escapeHtml(w.message)}</p><div class="wish-foot"><span class="wish-book">Sổ lưu bút đám cưới</span><button type="button" class="wish-like" data-idx="${i}" aria-label="Thả tim cho lời chúc này"><span class="wish-heart">♥</span> <span class="wish-like-count">${w.likes || 0}</span></button></div></div>`;
+    return `<div class="wish-item"><div class="wish-head">${w.icon ? `<span class="wish-item-icon">${escapeHtml(w.icon)}</span>` : ''}<div class="wish-head-text"><p class="wish-name">${escapeHtml(w.name)}</p></div>${featured.has(k) ? '<span class="wish-featured">NỔI BẬT</span>' : ''}</div><p class="wish-text">${escapeHtml(w.message)}</p><div class="wish-foot"><button type="button" class="wish-like" data-idx="${i}" aria-label="Thả tim cho lời chúc này"><span class="wish-heart">♥</span> <span class="wish-like-count">${w.likes || 0}</span></button></div></div>`;
   }).join('');
   wrap._wishList = list;
   $$('.wish-like', wrap).forEach(btn => btn.addEventListener('click', () => handleWishLike(Number(btn.dataset.idx), btn)));
@@ -1599,22 +1604,29 @@ async function handleWishLike(idx, btn) {
   const wrap = $('#wishList'); const list = wrap ? wrap._wishList : null; if (!list || !list[idx]) return;
   const w = list[idx]; const k = wishKey(w);
   const status = $('#wishStatus');
-  btn.disabled = true;
+  const countEl = btn.querySelector('.wish-like-count'); const heartEl = btn.querySelector('.wish-heart');
+  // Tăng tốc cảm nhận: tăng số và chạy hiệu ứng ngay lập tức, không chờ server,
+  // không khóa nút và không vẽ lại cả danh sách (vẽ lại làm mất hiệu ứng và chặn bấm liên tiếp).
+  w.likes = (w.likes || 0) + 1;
+  if (countEl) countEl.textContent = w.likes;
+  const online = bubbleState.onlineWishes.find(o => wishKey(o) === k); if (online) online.likes = w.likes;
+  if (heartEl) { heartEl.classList.remove('popping'); void heartEl.offsetWidth; heartEl.classList.add('popping'); setTimeout(() => heartEl.classList.remove('popping'), 500); }
+  const burst = document.createElement('span'); burst.className = 'wish-heart-burst'; burst.textContent = '♥'; btn.appendChild(burst); setTimeout(() => burst.remove(), 650);
+  if (!weddingData.endpoints || !weddingData.endpoints.wishes) {
+    const key = getWishKey(); const local = JSON.parse(localStorage.getItem(key) || '[]'); const item = local.find(o => wishKey(o) === k); if (item) { item.likes = w.likes; localStorage.setItem(key, JSON.stringify(local)); }
+    return;
+  }
   try {
-    if (weddingData.endpoints && weddingData.endpoints.wishes) {
-      const likeUrl = weddingData.endpoints.wishes.replace('action=wishes', 'action=like');
-      const res = await fetch(likeUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ name: w.name, message: w.message }) });
-      const data = await res.json().catch(() => null);
-      if (!res.ok || !data || data.ok !== true) throw new Error('Server error');
-      w.likes = data.likes;
-      const online = bubbleState.onlineWishes.find(o => wishKey(o) === k); if (online) online.likes = data.likes;
-    } else {
-      const key = getWishKey(); const local = JSON.parse(localStorage.getItem(key) || '[]'); const item = local.find(o => wishKey(o) === k); if (item) { item.likes = (item.likes || 0) + 1; localStorage.setItem(key, JSON.stringify(local)); }
-      w.likes = (w.likes || 0) + 1;
-    }
-    renderWishes();
+    const likeUrl = weddingData.endpoints.wishes.replace('action=wishes', 'action=like');
+    const res = await fetch(likeUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ name: w.name, message: w.message }) });
+    const data = await res.json().catch(() => null);
+    if (!res.ok || !data || data.ok !== true) throw new Error('Server error');
+    // Phản hồi có thể về muộn hơn các lần bấm sau: chỉ đồng bộ lên khi server cao hơn số đang hiển thị, không kéo số lùi lại.
+    if (data.likes > w.likes) { w.likes = data.likes; if (countEl) countEl.textContent = w.likes; if (online) online.likes = w.likes; }
   } catch {
-    btn.disabled = false;
+    w.likes = Math.max(0, w.likes - 1);
+    if (countEl) countEl.textContent = w.likes;
+    if (online) online.likes = w.likes;
     showStatus(status, 'error', 'Chưa thả tim được. Cần cập nhật Code.gs mới (có mục Lượt thích) rồi thử lại.');
   }
 }
